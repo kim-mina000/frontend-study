@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,8 +10,11 @@
     .placeholder-hidden:focus::placeholder {
       color: transparent;
     }
+
+    textarea{ resize: none;}
   </style>
 </head>
+
 <body>
   <!-- input(인라인-블록): 데이터를 입력받는 요소 -->
   <!-- 
@@ -22,18 +26,18 @@
   <!-- type 속성: 입력받을 데이터 타입을 지정 -->
   <!-- 일반 텍스트 -->
   <input type="text">
-  
+
   <!-- 값을 미리 입력 -->
   <input type="text" value="goni.kim">
-  
+
   <!-- 입력할 값의 힌트 -->
   <input type="text" placeholder="이름을 입력하세요!">
   <!-- Tip! 포커스 시 사라지는 힌트 -->
   <input type="text" placeholder="이름을 입력하세요!" class="placeholder-hidden">
-  
+
   <!-- 비활성화: 수정 불가, Tab키로 선택(focus) 불가, submit 불가 -->
   <input type="text" value="disabled 테스트" disabled>
-  
+
   <!-- (참고) 읽기 전용: 수정 불가, Tab키로 선택(focus) 가능, submit 가능 -->
   <input type="text" value="readonly 테스트" readonly>
 
@@ -42,7 +46,7 @@
   <!-- 체크 박스 -->
   <input type="checkbox"> Apple
   <input type="checkbox"> Banana
-  
+
   <br>
 
   <!-- 
@@ -116,5 +120,108 @@
     <input type="radio" name="fruits2"> Banana
   </label>
 
+  <!-- 그 밖에 다른 입력 양식들 -->
+
+  <!-- 버튼 -->
+  <input type="button" value="닫기">
+
+  <button type="button">닫기</button>
+
+  <!-- button 태그의 장점
+    요소 내부에 텍스트 뿐만 아니라 다른 태그를 넣을 수 있음 -->
+
+  <button type="button">
+    <b>닫기</b><br>
+    테스트
+  </button>
+
+  <!-- type 속성을 항상 지정하여 브라우저에 버튼 유형을 알려주는게 좋음
+      (브라우저마다 또는 사용 위치에 따라 다른 기본값을 가질 수도 있음)-->
+  <hr>
+  
+  <!-- 색상 선택 도구 color picker-->
+  <label for="favcolor">좋아하는 색상 선택:</label>
+  <input type="color" id="favcolor" value="#ff1234">
+
+  <hr>
+
+  <!-- 날짜 -->
+  <label for="birthday">생일:</label>
+  <input type="date" id="birthday">
+
+  <br>
+  <!-- 날짜+시간 -->
+  <label for="birthdaytime">생일(날짜+시간):</label>
+  <input type="datetime-local" id="birthdaytime">
+
+  <br>
+  <!-- 시간 -->
+  <label for="time">시간 선택:</label>
+  <input type="time" id="time">
+
+
+  <hr>
+  <!--이메일: submit 시 자동으로 이메일 형식 유효성 검사를 해줌-->
+  <form action="/signup">
+    <label for="email">이메일</label>
+    <input type="email" id="email">
+    <button type="submit">전송</button>
+  </form>
+
+  <hr>
+  <!--파일선택(첨부)-->
+  <label for="myfile">파일선택:</label>
+  <input type="file" id="myfile">
+  <br>
+  <label for="myfile">여러파일선택:</label>
+  <input type="file" id="myfile" multiple>
+
+  <hr>
+  <!--범위선택-->
+  <label for="volume">음량(0~10):</label>
+  <input type="range" id="volume" min="0" max="10">
+
+
+  <hr>
+  <!--비밀번호-->
+  <label for="pw">비밀번호:</label>
+  <input type="password" id="pw" maxlength="10">
+
+  <hr>
+  <!-- 셀렉트 박스(콤보 박스) -->
+  <!-- 속성
+  value: 선택한 항목의 값을 서버로 보낼 때 필요
+  selected: 항목을 미리 선택
+  셀렉트 박스를 직접 만들어 쓰는 사람도 많음 div로 영역지정 ul-li / 자바사용 -->
+  <label for="cars">차량선택:</label>
+  <select id="cars">
+    <option value="">선택</option>
+    <option value="Volvo">Volvo</option>
+    <option value="Benz">Benz</option>
+    <option value="Audi" selected>Audi</option>
+  </select>
+
+  <br>
+  <!-- 여러 줄 입력 -->
+  <p>
+    <label for="">여러 줄 텍스트 입력:</label>
+  </p>
+  <textarea id="multi" cols="30" rows="10" ></textarea>
+  <textarea id="multi" cols="30" rows="10" spellcheck="false"></textarea>
+  <textarea id="multi" cols="30" rows="10" spellcheck="false" style="resize: none;"></textarea>
+
+  <!-- form(동기식전송): 사용자가 작성한 내용을 어떤 서버 경로로, 어떤 방식-method-(get, post)으로 전달할지 설정 -->
+  <!-- 동기식전송과 비동기식전송 / 동기식전송, 서버에 요청을 보냈을 때 응답이 올때까지 다른 작업 불가능
+  비동기식, 서버에 요청을 보내더라도 다른 작업 가능 -->
+  <form action="/login" method="get">
+    <!-- form을 서버에 보낼때 name 속성을 필수로 입력해줘야함
+    name 속성: 서버로 전달할 때 유니크하게 구분하기 위한 이름 -->
+    <input type="text" name="id">
+    <input type="password" name="pw">
+    <button type="submit">로그인</button>
+    <!-- button태그가 form태그 안에 있어야 함께 작동 (summit이벤트작동) -->
+  </form>
+
 </body>
+
 </html>
