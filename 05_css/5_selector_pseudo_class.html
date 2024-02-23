@@ -4,8 +4,102 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+
+  <style>
+    /* 1. 어떠한 행동을 했을때 동작하는-가상 클래스 선택자 */
+    /* hover: 마우스 커서가 올라가있는 동안선택 */
+    * { text-decoration: none; color: black;  font-weight: bolder; }
+
+    a {width: 350px; display: block; text-align: center; transition: 2s; font-size: 100px; }
+    a:hover { background-color: black; color: whitesmoke; }
+
+    .box { background-color: pink; width: 350px; height: 100px; transition: 1s;}
+    .box:hover { background-color: royalblue; cursor:col-resize; }
+
+    /* active 마우스를 클릭하고 있는 동안 선택 */
+    /* 모바일에서 :hover 대신에 꼼수로 사용 */
+    
+    a:active { color: olivedrab; }
+    .box:active { height: 500px; }
+
+    p { font-size: 10px; width: 350px; display: block; }
+
+    /* focus 요소가 포커스(활성화)되면 선택 */
+    /* HTML 대화형(interactive=상호작용) 요소 
+      ex) input a button label select textarea 등
+    
+    구글에 HTML 대화형 콘텐츠 mdn(웹개발자 스펙 모아둔 사이트)이라고 검색
+    tab키로 확인 가능
+      */
+    
+    input { width: 350px; }
+    input:focus { background-color:rgb(223, 223, 223); }
+    
+    /* 2. 특정한 요소를 선택하는 가상 클래스 선택자 */
+
+    /* first-child (첫번째 자식 요소)
+      last-child (마지막 자식 요소)
+      */
+
+    .fruits span:first-child{ color: crimson; }
+
+    /*div가 3번째 자식이라 선택 안됨
+    * .fruits div:first-child{ color:crimson }*/
+
+    .fruits h3:last-child { color: rosybrown; }
+
+    /* nth-child(n) n번째 자식 요소 */
+    .fruits *:nth-child(2) { color: khaki;}
+    .fruits *:nth-child(2n) { color: limegreen;}
+    .fruits *:nth-child(odd) { color: plum;}
+    /* 짝수 대신 짝수라는 의미의 even이라는 키워드를 넣어도 됨 / 홀수는 odd*/
+
+    /* Quiz 자식들 중 앞에 3개만 선택*/
+    /*.fruits *:nth-last-child(n+11) { text-align: center; background-color: gray; display: block; width: 150px; height: auto; margin: 10px;}*/
+    .fruits *:nth-child(-n+3) { text-align: center; background-color: gray; display: block; width: 150px; height: auto; margin: 10px;}
+
+    /* :not(s) 선택자 s를 제외 */
+    .fruits *:not(span){ background-color: black; display: inline; }
+
+    .box:focus {
+      width: 350px;
+      background-color: rgb(174, 122, 233);
+    }
+  </style>
+
+
 </head>
 <body>
-  
-</body>
+  <a href="https://www.naver.com">NAVER</a>
+  <div class="box"></div> 
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit amet doloribus soluta, tempore sequi esse, asperiores voluptas, totam porro facilis non sapiente et consectetur recusandae quas fugiat placeat unde repudiandae.
+    <br><br>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe quisquam ad magni doloremque eligendi temporibus odit vero voluptates accusantium facere maxime deserunt debitis omnis obcaecati quo, reprehenderit unde cumque pariatur!</p>
+
+<hr>
+<input type="text">
+
+<hr>
+
+<div class="fruits">
+  <span>딸기</span>
+  <span>수박</span>
+  <div>오렌지</div>
+  <p>망고</p>
+  <h3>사과</h3>
+  <span>1</span>
+  <span>2</span>
+  <span>3</span>
+  <span>4</span>
+  <span>5</span>
+  <span>6</span>
+  <span>7</span>
+  <span>8</span>
+</div>
+
+<div class="box" tabindex="0">
+</div>
+
+
+
+  </body>
 </html>
