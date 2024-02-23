@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    /* 가상 요소 선택자: HTML에 가상의 요소를 생성 또는 제어 가능하다 */
+    /* ::before ::after 사용시
+       반드시 CSS의 content 속성과 같이 사용 */
+    .box {
+      width: 125px;
+      height: 100px;
+      background-color: palevioletred;
+    }
+/*     
+    .box::before { content: "🎀"; display:block; width: 30px; height: 30px; background-color: white; }
+    .box::after { content: "🎀";} */
+    /* 꼭 텍스트가 아니여도 됨!
+    근데 content 속성은 ""로 값을 비워 두더라도 필수로 작성 */
+    /* ::before ::after 가상 요소는 인라인 요소(글자)*/
+
+    /* display:block요소로 전환-> 가상요소는 인라인 요소이기 때문에 가로/세로 길이 지정이 불가능 */
+    /* 잘 활용하면 HTML구조 추가와 class 속성 값의 추가 없이 제어 가능 */
+
+    /* 그 밖에 ::placeholder, ::-webkit-scrollbar */
+    
+    /* Tip! 커스텀 스크롤바 만들기 */
+    .overflow-auto{ overflow: auto; } 
+    .designed-scroll::-webkit-scrollbar { 
+      /* 스크롤바 두께 */
+      width: 10px;
+    }
+
+    .designed-scroll::-webkit-scrollbar-thumb {
+      /* 스크롤바 색상, 모서리 둥글게 */
+      background-color: pink;
+      border-radius: 2.5px;
+    }
+
+
+  </style>
+
+
+</head>
+  <body>
+    <div class="box">
+      content
+    </div>
+
+    <!-- Tip! 커스텀 스크롤바 만들기 -->
+    <div class="box overflow-auto designed-scroll">
+      :*:･｡,☆ﾟ’･:*:･｡,
+      *+:*+:*+:*+::*+
+      ,｡･:*:･ﾟ’☆,｡･:*:
+      *+:*+:*+:*+::*+
+      *+:*+:*+:*+:*+:
+      :*:･｡,☆ﾟ’･:*:･｡,
+      *+:*+:*+:*+::*+
+      ,｡･:*:･ﾟ’☆,｡･:*:
+      *+:*+:*+:*+::*+
+      *+:*+:*+:*+:*+:
+      :*:･｡,☆ﾟ’･:*:･｡,
+      *+:*+:*+:*+::*+
+      ,｡･:*:･ﾟ’☆,｡･:*:
+      *+:*+:*+:*+::*+
+      *+:*+:*+:*+:*+:
+
+    </div>
+
+  </body>
+</html>
