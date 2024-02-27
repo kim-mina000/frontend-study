@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .profile {
+      /* img태그는 inline 태그이다
+      inline요소는 w/h가 안먹어야 하는데 얘만 예외*/
+      width: 100px;
+      border-radius: 50%;
+      /* 이미지 가운데 정렬하기 
+      1. margin: 0 auto(inline이라 안됨 block으로 바꿔주면 됨); 2. text-algin: center;(해당 요소의 자식을 가운데 정렬하는 태그로 여기서는 해당x div로 감싸거나 body 태그에 써야함) */
+      display: block;
+      margin: 0 auto;
+      background-color: skyblue;
+    }
+
+    .title {
+      text-align: center;
+      font-size: 24px;
+    }
+
+    .content {
+      text-align: center;
+    }
+
+    /* 일부 글자만 스타일링 */
+    /* a태그는 링크이동 태그! 의미에 맞게 태그 사용하쟈 */
+    span {
+      color: pink;
+      font-weight: bold;
+    }
+
+    .box {
+      width: 450px;
+      background-color: skyblue;
+      color: snow;
+      padding: 30px 0;
+      text-align: center;
+      border-radius: 15px;
+      margin: 0 auto;
+
+      box-shadow: 10px 10px pink;
+    }
+
+
+  </style>
+</head>
+<body>
+  <img src="./images/3d_heart.webp" alt="profile" class="profile">
+
+  <h3 class="title">
+    KIM MINA
+  </h3>
+
+  <p class="content">
+    <span>Frull Stack</span> Developer
+  </p>
+
+  <div class="box">
+    안녕하세요. Kim mina 입니다.<br>
+    현재 웹 프론프엔드/백엔드 학생이며 <br>
+    취미는 산책입니다.
+  </div>
+</body>
+</html>
