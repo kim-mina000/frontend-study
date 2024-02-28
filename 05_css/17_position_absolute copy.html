@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+
+    .grandparent {
+      width: 800px;
+      height: 550px;
+      background-color: black;
+    }
+
+    .parent {
+      width: 600px;
+      height: 350px;
+      background-color: grey;
+      opacity: 0.7;
+      
+      /* 부모 요소에 위치 기준을 만들어줌
+      absolute 사용시 relative를 함께 넣어주기! */
+      /* (참고) 다른 요소들도 사용가능하나, absolute나 fixed를 쓰게 되면 일반 배치 흐름에서
+      벗어나 레이아웃 구조가 무너지기 때문에 부모요소로 무난한 relative를 주로 사용 */
+      position: relative;
+    }
+
+    .child-1 {
+      width: 250px;
+      height: 150px;
+      background-color: pink;
+    }
+
+    .child-2 {
+      width: 350px;
+      height: 250px;
+      background-color: skyblue;
+
+      /* 상위 요소 중 위치 기준이 존재하는 가장 가까운 
+      요소를 기준으로 배치 */
+      /* absolute를 쓰면 일반 배치 흐름에서 벗어남(제외됨) :붕 떠요 */
+      position: absolute;
+      /* 상위 위치 기준 요소가 없으면 최상위(뷰포트)까지 타고 올라감 
+      뷰표트가 기준이 됨*/
+      bottom: 30px;
+      right: 60px;
+     
+    }
+    .child-3 {
+      width: 250px;
+      height: 300px;
+      background-color: indianred;
+    }
+
+    /* 정리: 보통 absolute를 사용해서 배치를 한다면 해당 요소의 부모 요소에 relative 지정 */
+
+    .wrapper {
+      width: 800px;
+      height: 400px;
+
+      background-color: pink;
+      position: relative;
+    }
+
+    .box{
+      width: 100px;
+      height: 100px;
+
+      background-color: skyblue;
+      position: absolute;
+      /* 가운데 정렬하는 법 */
+      top: 10px;
+      bottom: 0px;
+      /* margin에 값을 두개 놓는다? 상하/좌우 값임 그중에 상하값을 마진이 오토로 맞춰줌 */
+      /* margin: auto 0; */
+      left: 10px;
+      right: 0;
+
+      margin: auto;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="grandparent">
+    <div class="parent">
+      <div class="child-1">1</div>
+      <div class="child-2">2</div>
+      <div class="child-3">3</div>
+    </div>
+  </div>
+
+  <br><br>
+
+  <!-- Tip! absolute가 적용된 요소의 수평, 수직 가운데 배치 -->
+
+  <div class="wrapper">
+    <div class="box">
+
+    </div>
+  </div>
+
+
+</body>
+</html>
