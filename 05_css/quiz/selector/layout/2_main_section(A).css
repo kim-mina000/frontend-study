@@ -1,0 +1,84 @@
+.main-background{
+  height: 500px;
+  background-image: url("./images/shoes.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  text-align: center;
+
+  position: relative;
+}
+
+.main-title {
+  color: snow;
+  font-size: 40px;
+  /* (참고) margine collapse(마진상쇄) 현상
+  :박스들의 테두리가 만나면 마진이 하나로 합쳐짐
+  만나는 박스들에 둘 다 마진이 있으면 둘 중에 더 큰 마진을 하나만 적용함
+  부모-자식 간에 형제 간에 생김(첫번째 박스에 margin-bottom을 주고 두번째 박스에 margin-top을 주는경우) 등*/
+  /* 마진 상쇄 현상 피하는 법 */
+  /* 1. margine 대신 padding 사용하기 (권장) */
+  /* 2. 테두리가 안만나게 살짝 떨어트려주기 (꼼수) */
+  /* margin-top:100px;  
+  padding: 0.1px; */
+  
+  padding: 50px;
+
+}
+
+.main-content {
+  color: snow;
+}
+
+.main-button {
+  padding: 10px 30px;
+  font-size: 20px;
+  background-color: snow;
+  border-radius: 0.5em;
+  border: none;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.main-button:hover {
+  background-color: rgba(255, 250, 250, 0.452);
+}
+
+.main-button:active {
+  color: olive;
+}
+
+/* 겹치는 레이아웃 만들기 */
+
+.sub-description {
+  /* 화면이 작을 때는 부모 width의 80%만, 넓어지면 최대 700px 까지 */
+  width: 80%;
+  max-width: 700px;
+  margin: 0 auto;
+  background-color: snow;
+  padding: 10px;
+  border-radius: 1.5em;
+
+  /* relative 사용시 */
+  /* position: relative;
+  top: 100px; */
+  /* 원래의 위치는 영영 비어있게됨 -사용 불가능 */
+
+  /* absolute 사용시 */
+  position: absolute;
+  bottom: -100px;
+  /* margin: 0 auto; 가 안먹음 */
+  left: 0;
+  right: 0;
+
+}
+
+
+.history {
+  background-color: rgba(90, 90, 90, 0.315);
+  padding: 100px 20px 40px;
+}
+
+.history>h4 {
+  text-align: center;
+}

@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <style>
+    
+    body {
+      /* 세로스크롤 */
+      height: 3000px;
+    }
 
     .grandparent {
       width: 800px;
@@ -17,7 +22,7 @@
       height: 350px;
       background-color: grey;
       opacity: 0.7;
-      position: relative;
+      
     }
 
     .child-1 {
@@ -30,13 +35,15 @@
       width: 350px;
       height: 250px;
       background-color: skyblue;
-
-
-      position: absolute;
-
-      bottom: 30px;
-      right: 60px;
-     
+      /* fixed 뷰포드를 기준으로 배치 (화면을 스크롤해도 요소의 위치가 고정됨) */
+      /* fixed 속성값을 주는 순간 일반 배치 흐름에서 벗어남(제외됨) 기존의 형제들에게서 배제되기 때문 :붕 뜬다 */
+      
+      position: fixed;
+      bottom: 0;
+      top: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
     }
     .child-3 {
       width: 250px;
@@ -44,28 +51,7 @@
       background-color: indianred;
     }
 
-
-    .wrapper {
-      width: 800px;
-      height: 400px;
-
-      background-color: pink;
-      position: relative;
-    }
-
-    .box{
-      width: 100px;
-      height: 100px;
-
-      background-color: skyblue;
-      position: absolute;
-      top: 10px;
-      bottom: 0px;
-      left: 10px;
-      right: 0;
-
-      margin: auto;
-    }
+    /* 고정된 헤더, 광고 배너나, 최상단으로 이동하는 버튼을 만들 때 주로사용 */
 
   </style>
 </head>
@@ -79,13 +65,6 @@
   </div>
 
   <br><br>
-
-
-  <div class="wrapper">
-    <div class="box">
-
-    </div>
-  </div>
 
 
 </body>
