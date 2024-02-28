@@ -22,6 +22,7 @@
       color: snow;
       font-size: 62px;
       text-align: center;
+      line-height: 100px;
     }
 
     .parent{
@@ -56,6 +57,11 @@
     .parent.d-inline-flex + .parent.d-inline-flex {
       margin-left: 20px;
     }
+
+    .flex-row { flex-direction: row; }
+    .flex-row-reverse { flex-direction: row-reverse; }
+    .flex-column { flex-direction: column; }
+    .flex-column-reverse { flex-direction: column-reverse; }
   </style>
 </head>
 <body>
@@ -85,6 +91,36 @@
   </div>
 
   <div class="parent d-inline-flex">
+    <div class="child-1"></div>
+    <div class="child-2"></div>
+    <div class="child-3"></div>
+  </div>
+
+  <h1>felx-direction : flex Items의 정렬 방향을 설정</h1>
+  <h2>주의! 방향을 어떻게 설정하느냐에 따라 주 축이 바뀜 (row <-> column)</h2>
+  <h2>row: 좌에서 우로 정방향</h2>  
+  <div class="parent d-flex">
+    <div class="child-1"></div>
+    <div class="child-2"></div>
+    <div class="child-3"></div>
+  </div>
+
+  <h2>row-reverse: 우에서 좌로 역방향</h2>
+  <div class="parent d-flex flex-row-reverse">
+    <div class="child-1"></div>
+    <div class="child-2"></div>
+    <div class="child-3"></div>
+  </div>
+
+  <h2>column: 위에서 아래로 정방향</h2>
+  <div class="parent d-flex flex-column">
+    <div class="child-1"></div>
+    <div class="child-2"></div>
+    <div class="child-3"></div>
+  </div>
+
+  <h2>column-reverse: 아래서 위로 역방향</h2>
+  <div class="parent d-flex flex-column-reverse">
     <div class="child-1"></div>
     <div class="child-2"></div>
     <div class="child-3"></div>
