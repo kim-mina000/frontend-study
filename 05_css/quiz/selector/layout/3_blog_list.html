@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="3_blog_list.css">
+</head>
+<body>
+  <!-- Tip! 레이아웃을 만드는 기본
+  뭘 만들던 레이아웃은 항상 수평(행)으로 자른 후 박스부터 만들고 시작하면 됨
+  그리고 이 박스들을 전부 <div>로 구현해 놓으면 됨 (물론 시멘틱 태그도 최대한 활용)
+  그 안에 글 넣고 그림 넣고 하면 끝!
+
+  이때 <div>는 블록 요소이기 때문에 위아래로 배치
+  좌우로 나란히 배치하고 싶으면 float(본래의 용도로 사용하는건 ok, bad),
+  inline-block(not bad), flex box(good) -->
+
+  <!-- navbar -->
+    <nav>
+      <ul class="header">
+        <il><a href="#">영화</a></il>
+        <il><a href="#">맛집</a></il>
+        <il><a href="#">IT</a></il>
+        <il><a href="#">컴퓨터</a></il>
+      </ul>
+    </nav>
+
+    <!-- blog list -->
+    <div class="container">
+      <div class="blog_content">
+        <div class="content_header">
+          <!-- 프로필이미지 -->
+          <img src="./images/black_heart2.png" alt="profile_img">
+          <!-- 작성자, 시간 -->
+          <ul>
+            <il>Kim mina</il>
+            <il id="smaller">1시간 전</il>
+          </ul>
+        </div>
+        <div class="content_body">
+          <!-- 글 제목, 글 내용 -->
+          <ul>
+            <il><h4>가성비 맛집을 발견했어요!</h4></il>
+            <il>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto beatae sed, nemo vel rem accusantium voluptate in esse doloribus perspiciatis officiis corrupti dicta hic nostrum consequatur inventore laborum eos tempora.</il>
+          </ul>
+        </div>
+      </div>
+      <div class="blog_img">
+        <!-- 샘플 이미지 -->
+      </div>
+    </div>
+</body>
+</html>

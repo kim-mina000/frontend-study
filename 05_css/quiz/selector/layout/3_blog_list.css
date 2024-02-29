@@ -1,0 +1,91 @@
+/* 공통 스타일은 앞부분에 작성 */
+* {
+  color: black;
+}
+body {
+  background-color: aliceblue;
+}
+ul {
+  list-style: none;
+  margin: 0;
+}
+a {
+  color: snow;
+  text-decoration: none;
+  /* background-color: inherit; */
+}
+
+.header {
+  display: flex;
+  column-gap: 10px;
+}
+
+#smaller { font-size:12px ; padding-top: 5px; opacity: 0.6; }
+
+.header il {
+  background-color: skyblue;
+  padding: 10px;
+  border-radius: 1em 1em 0 0;
+  width: 60px;
+  text-align: center;
+  font-weight: 900;
+
+}
+
+.header il:hover {
+  background-color: rgba(135, 207, 235, 0.473);
+}
+  
+/* il + il {
+  margin-left: 10px;
+} */
+/* 이방법 대신 column-get:10px; 값을 줘도 됨, 꼭 부모에 속성값주기! */
+
+.container {
+  display: flex;
+  width: 800px;
+  height: auto;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.blog_content {
+  width: 80%;
+  height: 200px;
+  display: flex;
+  flex-direction: column; 
+}
+
+.container .blog_content .content_header {
+  display: flex;
+}
+.container .blog_content .content_header ul {
+  display: flex;
+  padding-left: 10px;
+  width: 100px;
+  flex-wrap: wrap;
+  justify-content: start;
+  align-content: center;
+}
+
+.container .blog_content .content_header ul il {
+  height: auto;
+  margin-left: 0px;
+}
+.container .blog_content .content_header img {
+  width: 60px;
+  height: 60px;
+  background-color: skyblue;
+  border-radius: 50%;
+}
+
+
+.blog_img {
+  width: 20%;
+  height: 200px;  
+  background-image: url(./images/sample.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+
