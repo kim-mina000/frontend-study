@@ -1,0 +1,91 @@
+/* 연습용 */
+.text_input { 
+  width: 120px;
+  padding: 10px;
+  font-size: 20px;
+  border: 2px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+}
+/* 연습용 */
+/* 공통 스타일은 앞부분에 작성 */
+/* 콤마를 써서 여러 개 동시 선택 가능 */
+div, input, textarea {
+  box-sizing: border-box;
+}
+textarea {
+  resize: none;
+}
+button {
+  cursor: pointer;
+}
+.form_background {
+  background-color: #333;
+  padding: 30px;
+  display: flex;
+  justify-content: center;
+
+}
+
+/* 실전 */
+
+.input_style {
+  border: 2px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+  padding: 5px;
+  width: 100%;
+}
+
+.form_input:focus::placeholder {
+  color: transparent;
+}
+
+input:focus {
+  border: 2px solid #222;
+  transition: 2s;
+}
+
+.form-container{
+  background-color: #fff;
+  width: 80%;
+  max-width: 600px;
+  padding: 30px;
+
+}
+
+.name_container {
+  display: flex;
+}
+
+.name_container>div{
+  flex: 1;
+}
+
+div+div{
+  margin-left: 5%;
+}
+
+.button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button>.blank {
+  flex-grow: 1;
+}
+
+.button>button {
+  width: 100px;
+  height: 3em;
+  border: 0px;
+  background-color: #999;
+  border-radius: 1em;
+  font-weight: 700;
+  color: white;
+}
+
+.button>button:hover{
+  background-color: #99999958;
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="4_form_input.css">
+</head>
+<body>
+  <!-- 연습용 -->
+  <h2>연습</h2>
+  <form action="">
+    <input type="text">
+    <input type="text" class="text_input">
+    <button>전송</button>
+    <!-- form 태그 안에서 버튼의 타입을 안써주면 기본 submit으로 동작함 type은 명시적으로 써주는 것을 권장 -->
+    <br>
+
+    <!-- input 태그 쓸 때 label 태그도 같이 사용 (권장) -->
+
+    <p>
+      <label for="name">Your name</label>
+    </p>
+    <input type="text" id="name" class="text_input">
+  </form>
+
+  <h2>실전</h2>
+  <!-- 박스부터 그려보기!! (불피요한 div는 생략 가능) -->
+  <div class="form_background">
+    <div class="form-container">
+
+      <form>
+        <h3>Contact Us</h3>
+        <p>
+          <label for="your_email">Your Email</label>
+        </p>
+        <input type="text" id="your_email" class="form_input input_style" placeholder="email@example.com">
+
+        <div class="name_container">
+          <div>
+            <p><label for="First_Name">First Name</label></p>
+            <input type="text" id="First_Name" class="input_style">
+          </div>
+            <div>
+            <p><label for="Last_Name">Last Name</label></p>
+            <input type="text" id="Last_Name" class="input_style">
+        </div>
+        </div>
+
+        <p><label for="Message">Message</label></p>
+        <textarea name="Message" id="Message" class="input_style" cols="30" rows="10"></textarea>
+
+        <div class="button">
+          <input type="checkbox" name="Agree" id="Agree">
+          <p><label for="Agree">Agree</label></p>
+          <div class="blank"></div>
+          <button type="button">send</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</body>
+</html>
