@@ -1,0 +1,120 @@
+/* 공통스타일 */
+
+@font-face {
+  font-family: 'BagelFatOne-Regular';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_JAMO@1.0/BagelFatOne-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+*{
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+a {
+  font-size: 10px;
+}
+
+h2 {
+  margin: 0;
+  padding: 10px;
+  display: block;
+  color: snow;
+  position: relative;
+  left: 10%;
+  font-size: 24px;
+  
+  font-family: 'BagelFatOne-Regular';
+  letter-spacing: 0.3em;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+
+tr+tr {
+  border-top: 2px solid powderblue;
+}
+.cart_background{
+  width: 100%;
+  background-image: url(./images/backround_3Dheart.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  /* display: flex; */
+  padding: 30px;
+  /* background-color: powderblue; */
+  
+}
+
+.inner{
+  margin: 0 auto;
+  width: 100%;
+  max-width: 700px;
+}
+.cart_list {
+  width: 80%;
+  margin: 0 auto;
+  background-color: rgba(255, 250, 250, 0.9);
+  border-radius: 1.5em;
+
+}
+/* .cart_list td, tr {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */
+
+.cart_list th, .cart_list td {
+  padding: 10px;
+  text-align: center;
+  flex: 1;
+}
+.cart_list th:nth-child(2) {
+  /* 의미 다른 셀들은 최소 폭을 ㅏ져가면서 해당 셀은 최대 400px까지 늘어남 */
+  /* flex: 3; */
+  /* text-align: center; */
+  width: 400px;
+/* (참고) 셀 블록마다 width를 설정해 줄 수 있지만 하나의 셀에 width를 주어도
+전체 열의 width값이 같아짐 */
+}
+
+.cart_list tbody td:nth-child(2) {
+  text-align: left;
+}
+
+.cart_list tr td:last-child{
+  text-align: right;
+}
+
+.cart_list tr td img {
+  width: 50px;
+  height: 50px;
+}
+
+
+
+.btn_group {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+}
+
+.btn_group .btn {
+  background-color: indianred;
+  color: snow;
+  font-weight: 600;
+  border: 0;
+  border-radius: 1.3em;
+  padding: 5px 15px;
+}
+
+.btn_group .btn:hover {
+  cursor: pointer;
+  background-color: pink;
+  color: indianred;
+}

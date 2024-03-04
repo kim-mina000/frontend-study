@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="5_cart.css">
+</head>
+<body>
+  <div class="cart_background">
+    <!-- 가운데 정렬을 위한 div -->
+    <div class="inner">
+      <h2>장바구니</h2>
+      <table class="cart_list">
+        <!-- 4행 5열 만들기 -->
+        <tbod>
+          <tr>
+            <th></th>
+            <th>ITEM</th>
+            <th>AMOUNT</th>
+            <th>PRICE</th>
+            <th>TOTAL</th>
+          </tr>
+          <tr>
+            <td><img src="./images/camera.png" alt="cemera"></td>
+            <td>카메라</td>
+            <td>1</td>
+            <td>100,000</td>
+            <td>100,000</td>
+          </tr>
+          <tr>
+            <td><img src="./images/item1.png" alt="shose"></td>
+            <td>신발</td>
+            <td>2</td>
+            <td>59,000</td>
+            <td>118,000</td>
+          </tr>
+          <tr>
+            <td colspan="5">주문금액 218,000원</td>
+            <!-- <td>218,000원</td> -->
+          </tr>
+        </tbod>
+      </table>
+      <div class="btn_group">
+        <a href="#"> 계속 쇼핑하기</a>
+        <button type="button" class="btn">
+          구매하기
+        </button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
