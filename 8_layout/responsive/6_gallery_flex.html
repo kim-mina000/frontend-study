@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .gallery {
+    background-color: aliceblue;
+  }
+
+  .gallery .inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 50px;
+  }
+
+  .gallery h1 {
+    text-align: center;
+  }
+
+  .gallery .img-group {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .gallery .img-group img {
+    /* gap을 넣은 만큼 적당히 빼주기 */
+    width: calc(25% - 8px);
+  }
+  /* 768-960px 일때는 한줄에 3장 씩 */
+  /* 480-767px 일때는 한줄에 2장 씩 */
+  /* ~479px 이하 일때는 한줄에 한장씩 */
+  @media screen and (max-width:960px) and (min-width:768px) {
+    .gallery .img-group img {
+      width: calc(33% - 8px);
+    }
+  }
+  @media screen and (max-width:767px) and (min-width:480px) {
+        .gallery .img-group img {
+      width: calc(50% - 8px);
+    }
+  }
+  @media screen and (max-width:479px) {
+    .gallery .img-group img {
+      width: calc(100% - 8px);
+    }
+  }
+
+</style>
+<body>
+  <section class="gallery">
+    <div class="inner">
+      <h1>갤러리</h1>
+      <div class="img-group">
+        <img src="../img/dog1.jpg" alt="img1">
+        <img src="../img/dog2.jpg" alt="img2">
+        <img src="../img/dog3.jpg" alt="img3">
+        <img src="../img/dog4.jpg" alt="img4">
+        <img src="../img/dog6.jpg" alt="img5">
+        <img src="../img/dog7.jpg" alt="img6">
+        <img src="../img/dog8.jpg" alt="img7">
+        <img src="../img/dog9.jpg" alt="img8">
+      </div>
+    </div>
+  </section>
+</body>
+</html>
