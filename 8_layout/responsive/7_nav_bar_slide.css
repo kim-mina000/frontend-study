@@ -1,0 +1,121 @@
+/* 전역 변수 설정 */
+html {
+  --color-text: #f2f2f2;
+  --color-background: #044288;
+  --color-orange: #ff9950;
+}
+
+/* 또는 */
+:root {
+  --color-text: #f2f2f2;
+  --color-background: #044288;
+  --color-orange: #ff9950;
+}
+
+
+/* 공통 스타일 */
+* {
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+.btn {
+  width: 100px;
+  height: 40px;
+  border: 2px solid var(--color-orange);
+  border-radius: 4px;
+  outline: none;
+  background-color: transparent;
+  color: var(--color-orange);
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  color: var(--color-text);
+  background-color: var(--color-orange);
+}
+
+.material-icons {
+  font-size: inherit;
+  color: var(--color-orange);
+}
+header {
+  background-color: var(--color-background);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+header .logo {
+  font-size: 48px;
+  display: flex;
+  align-items: center;
+}
+
+header .nav__menu--main {
+  display: flex;
+}
+
+header .nav__menu--main li {
+  /* 만약 클릭 할 수 영역을 넓히려면 a태그에 패딩넣기 */
+  padding: 8px 12px;
+}
+header .nav__menu--main li:hover {
+  background-color: var(--color-orange);
+  border-radius: 4px;
+}
+header .btn-group .btn+.btn {
+  margin-left: 10px;
+}
+header .btn-hamburger {
+  font-size: 48px;
+  position: absolute;
+  right: 32px;
+  display: none;
+}
+.m-nav {
+  width: 50%;
+  height: 100vh;
+  background-color: var(--color-background);
+  padding: 10px 20px;
+
+  /* 방법 1 (fixed - 옆으로 밀어놓고 (right음수값) 가져오기) */
+  /* 방법 2 translateX()를 써도 구현가능 */
+  position: fixed;
+  top: 0;
+  right: -50%;
+
+  transition: right 1s;
+  /* display: none; */
+}
+
+.m-nav div {
+  text-align: right;
+}
+.m-nav .btn-close {
+  font-size: 48px;
+}
+
+@media screen and (max-width:768px) {
+  header .btn-hamburger{
+    display: block;
+  }
+  header .nav {
+    display: none;
+  }
+
+  .btn-group{
+    display: none;
+  }
+}
+@media screen and (min-width:768px) {
+  .m-nav {
+    display: none;
+  }
+}
