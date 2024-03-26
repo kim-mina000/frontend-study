@@ -196,6 +196,13 @@
     result = dbData || '기본값'; // 이런식으로 기본값 설정할때 많이 씀
     document.write(result,'<br>');
 
+    //(참고) null 병합 연산자 (ES2020)
+    // nullish(null 계열의 값): null, undefined
+    // const inputName = 'kim';
+    const inputName = undefined;
+    const nickName = inputName ?? 'Guest';
+    document.write(nickName, '<br>');
+
     //(심화 Quiz)
     let aa;
     let bb = null;
@@ -203,9 +210,38 @@
     let dd = 4 ;
     let ee = 'five';
     let ff = aa || bb || cc || dd || ee;
-    // ff에 저장된 값은?
+    // ff에 저장된 값은? 4
 
     document.write(ff,'<br>');
+
+
+    // 7. 조건(삼항) 연산자
+    // 조건에 따라 2개의 값 중 하나를 반환
+    // 조건식 ? 값1: 값2;
+    document.write('<h2>삼항 연산자</h2>');
+
+    result = 0 ? 'javascript' : ' hello';
+    document.write(result,'<br>');
+
+    const score = 75;
+    // result = score >= 90 ? 'A' : 'B'; 
+    result = score >= 90 ? 'A' : (score >= 80 ? 'B': 'C');
+    document.write(result,'<br>');
+
+    // 홀 짝 판별기
+    // window.prompt('메세지','기본값'); :입력을 요청하는 대화상자를 띄워준다
+    // 확인을 누르면 입력값이, 취소를 누르면 null을 반환
+    const number = Number(window.prompt('숫자를 입력하세요.','0'));
+    document.write(number,' ', typeof number,'<br>');
+
+    // (참고) % 연산 시 문자가 숫자로 자동 타입 변환이 일어남
+    // string 데이터 값을 숫자로 타입변환 시켜주고 싶을때는 ? Number 함수!
+
+    result = (number == null) ?'값을 입력해주세요' :((number % 2 === 0) ? '짝수입니다': '홀수입니다') ;
+    document.write(result,'<br>');
+    // 너무 큰 수를 JS에서 처리하기 힘들기 때문에 너무 큰 수를 입력하면 결과가 부정확함 필요할때는 BigInt값을 넣어주는게 좋음
+    // 관련내용 => 부동 소수점
+
 
   </script>
 </body>
