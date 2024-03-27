@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    // 문제4
+    // 사용자로부터 신장을 입력받고, 입력받은 신장이 
+    // 1) 150 이상이면, "놀이기구 이용 가능" 이라고 출력
+    // 2) 150 미만이면,
+    // 부모님과 함께 왔는지 한 번 더 묻는다.(confirm창 이용) 
+    // 함께 왔다면 확인(true)을 누르고 혼자 왔다면 취소(false)를 눌렀을때 다음과 같이 브라우저에 출력하세요.
+    // 확인 입력시: 좋은 시간 보내렴~
+    // 취소 입력시: 어른 모시고 다시 오렴~
+
+
+    // 풀이4-1
+    const height = Number(prompt('키를 입력하시오.', ''));
+    if (height >= 150) {
+      document.write(`입력받은 키 : ${height} 🎈 놀이기구 이용 가능`);
+    } else {
+      const parentIs = confirm('부모님과 함께왔니?');
+      if (parentIs) {
+        document.write(`좋은 시간 보내렴~ 🎈`);
+      } else {
+        document.write(`어른 모시고 다시 오렴~ 🎈`);
+      }
+    }
+  </script>
+</head>
+<body>
+  
+</body>
+</html>
