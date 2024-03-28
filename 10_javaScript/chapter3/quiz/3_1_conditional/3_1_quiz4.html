@@ -17,17 +17,27 @@
 
 
     // 풀이4-1
+    // 풀이 1.
     const height = Number(prompt('키를 입력하시오.', ''));
-    if (height >= 150) {
-      document.write(`입력받은 키 : ${height} 🎈 놀이기구 이용 가능`);
-    } else {
-      const parentIs = confirm('부모님과 함께왔니?');
-      if (parentIs) {
-        document.write(`좋은 시간 보내렴~ 🎈`);
-      } else {
-        document.write(`어른 모시고 다시 오렴~ 🎈`);
-      }
+    // if (height >= 150) {
+    //   document.write(`입력받은 키 : ${height} 🎈 놀이기구 이용 가능`);
+    // } else {
+    //   const parentIs = confirm('부모님과 함께왔니?');
+    //   if (parentIs) {
+    //     document.write(`좋은 시간 보내렴~ 🎈`);
+    //   } else {
+    //     document.write(`어른 모시고 다시 오렴~ 🎈`);
+    //   }
+    // }
+    
+    
+    // 풀이 2.
+    let msg = '놀이기구 이용 가능';
+    if (height < 150){
+      msg = confirm('부모님과 함께왔니?') ? `좋은 시간 보내렴~ 🎈` : `어른 모시고 다시 오렴~ 🎈`;
     }
+    document.write(msg);
+
   </script>
 </head>
 <body>

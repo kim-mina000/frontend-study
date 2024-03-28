@@ -24,6 +24,10 @@
     let maxNum = num1;
     let minNum = num1;
 
+    // Math 메소드 이용
+    let max = Math.max(num1,num2,num3);
+    let min = Math.min(num1,num2,num3);
+
     if ( maxNum <= num2 ) {
       maxNum = num2;
     }
@@ -43,6 +47,9 @@
     document.write(`최소값 : ${minNum} <br>`);
     document.write(`합계 : ${sum} <br>`);
     document.write(`평균 : ${average} <br>`);
+
+    document.write(`최대값2 : ${max} <br>`);
+    document.write(`최소값2 : ${min} <br>`);
     
     
   </script>
