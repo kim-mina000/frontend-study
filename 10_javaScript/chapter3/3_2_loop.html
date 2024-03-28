@@ -9,7 +9,85 @@
   <script>
     // 반복문
     // 조건식을 만족하는 동안 실행 코드를 반복하여 수행
-    // 
+    // 예) 데이터를 반복해서 처리해야 될 때, 100개의 데이터를 100번 쓰는 것보다 코드 한 줄로 100번 반복이 효율적
+    // => 주로 배열과 함께 많이 쓰임
+
+    // for 문 , while 문
+
+    // 1. for문 (가장 사용 빈도가 높음)
+    // for (초기화식; 조건식; 증감식) {
+    //   실행코드
+    // }
+
+    // 반복 1~10까지 10회 출력
+    for (let i = 1; i <= 10; i++){
+      document.write(`반복 ${i}회<br>`)
+    }
+
+    let sum = 0 ;
+    // 0으로 초기화 해주지 않으면 undefiend값에 정수값이 더해져서 NaN값이 나옴
+    for(let i = 0; i <=100; i++){
+      // sum = sum + i;
+      sum += i;
+    }
+
+    document.write(`1부터 100까지의 합: ${sum}<br>`)
+    document.write(`============================<br>`)
+    // 2) break문
+    // switch문 혹은 반복문을 빠져나갈때 사용
+
+    // 1~10까지 반복중 i의 값이 6일때 강제 종료
+
+    const yap = "얍";
+    for (let i = 1; i <= 10; i++){
+      for (let j = 1; j <= i; j++){
+        document.write(`${yap}`)
+      }
+      document.write(`<br>`)
+      if ( i == 6 ){
+        break;
+      }
+    }
+
+    // 3) continue 문
+    // 반복문에서만 사용 가능
+    // 뒤에 오는 코드는 무시하고 다음 반복을 계속할 때 사용
+    // 1~10까지 홀수만 출력(짝수일때는 건너뛰기)
+
+    for (let i = 1; i <= 10; i++) {
+      if ( i % 2 === 0)continue;
+      document.write(i, '<br>');
+      
+    }
+
+    // 4) 중첩 for 문
+    // for문 안에 for문 사용
+    // 중첩할수록 퍼포먼스가 떨어짐
+    // for (초기화식; 조건식; 증감식){ // 바깥 for문
+    //   for(초기화식; 조건식; 증감식){ // 안쪽 for문
+    //     실행코드;
+    //   }
+    // }
+
+    for(let i = 1; i <= 3 ; i++ ){
+      for(let j = 1; j <= 2; j++ ){
+        document.write(` | ${i}행 ${j}열 | `)
+      }
+      document.write('<br>');
+    }
+
+    
+  document.write('<h2>구구단 출력</h2>');
+    // Quiz 구구단 출력하기
+
+    for (let i = 2; i < 10; i++){
+      document.write(`* * * ${i}단 * * *<br>`);
+      for (let j = 1; j < 10; j++){
+        document.write(`${i}x${j}=${i*j} <br>`);
+      }
+    }
+
+
   </script>
 </body>
 </html>
