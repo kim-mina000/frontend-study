@@ -12,6 +12,20 @@
   <input type="text" class="id">
   <input type="password" class="pw">
   <button type="button" class="btn-login">로그인</button>
+
+
+  <!-- *** -->
+  <div>
+    <p>
+      <button type="button" onclick="gallery('PREV')">이전</button>
+      <button type="button" onclick="gallery('NEXT')">다음</button>
+    </p>
+    <p>
+      <img src="./images/pic_1.jpg" alt="photo" class="photo">
+    </p>
+  </div>
+
+
   <script>
     // 함수
     // 여러 실행 코드들의 묶음(그룹화)
@@ -163,9 +177,29 @@
       return sum / arrData.length;
     }
 
-    document.write(`평균 점수는 ${testAvg(subjects)}점 입니다.`);
- 
+    //document.write(`평균 점수는 ${testAvg(subjects)}점 입니다.`);
 
+    // Quiz: 이전/ 다음 버튼 으로 이미지 넘기기
+    // (위에 body 태그 참조***)
+    const img = document.querySelector('.photo');
+    function gallery(string){
+      let i = 1;
+      if(string === 'NEXT'){
+        if(i > 8) {
+          return;
+        } else {
+
+          i++;
+        }
+      } else if(string === 'PREV'){
+        if(i < 1){
+          return;
+        } else {
+          
+          i--;
+        }
+      }
+    }
     </script>
 </body>
 </html>
