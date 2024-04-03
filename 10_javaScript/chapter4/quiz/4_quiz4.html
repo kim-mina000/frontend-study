@@ -19,6 +19,11 @@
 
 
     // 풀이4
+    // 한글로 풀이 (플로우차트)
+    // 1) 함수 printNumbers(from,to)를 선언하기
+    // 2) 1초 간격으로 from 값을 출력시키기 -> setInterval
+    // 3) 출력되는 숫자를 1씩 증가시키기 (+1 , ++)
+    // 4) to 값까지만 (조건: from === to, from >= to)출력하고 멈추기 -> clearInterval
     let timer;
     function printNumbers(f,t) {
       timer = setInterval(function() {
