@@ -53,6 +53,163 @@
     pos = str.lastIndexOf('locate',15);
     document.write(pos,'<br>');
 
-  </script>
+
+    // (Es6차) includes()
+    // 지정된 문자열이 포함된 경우 true를 반환
+    // 그렇지 않으면 false를 반환
+    pos = str.includes('locate');
+    document.write(pos,'<br>');
+    pos = str.includes('locate',15);
+    document.write(pos,'<br>');
+
+    // 실습: 사용자로부터 입력받은 이메일 주소 유효성 검사
+    // 정규표현식을 안쓰는 경우(실무에서는 정규식 사용!)
+    document.write(`<h4>실습: 이메일 주소 유효성 검사</h4>`);
+
+    //const userEmail = prompt('당신의 이메일 주소는?','@');
+    const arrUrl = ['.co.kr','.com','.net','.or.kr','.go.kr'];
+    
+    let check1 = false;
+    let check2 = false;
+
+    // if (userEmail.indexOf('@') > 0){ // '@' 유무 검사
+    //   check1 = true;
+    // }
+    
+    // for (let i = 0; i < userEmail.length; i++){
+    //   if (userEmail.indexOf(arrUrl[i]) > 0){ // 도메인 검사
+    //     check2 = true;
+    //     break;
+    //   }
+    // }
+
+    // if (check1 === true && check2 === true){
+    //   document.write(`올바른 이메일 입니다. 유저이메일 : ${userEmail}<br>`);
+    // } else { alert(`이메일 형식이 잘못되었습니다`); }
+
+
+    // (참고) 정규 표현식(정규식)
+    // 문자열에서 특정 문자 조합을 찾기 위한 패턴
+    // 주로 회원가입 시 유효성 검사(패스워드, 이메일, 전화번호 포맷 검증 등)에 사용
+
+    // 4) slice()
+    // 시작 위치와 종료 위치를 주면, 문자열에서 해당 부분을 잘라내서 반환
+    document.write(`<h4>문자열 추출</h4>`);
+    str = 'Apple, Banana, Kiwi, Strawberry, Melon, Watermelon'
+    // 문자배열 -> length와 index값을 가짐 배열이 아니면서 배열의 속성을 쓰기때문에 유사배열이라고 부름
+    let res = str.slice(7,13);
+    document.write(res, '<br>');
+
+    // 두번째 인수인 종료 위치를 생략하면, 시작 위치에서 문자열의 마지막 위치까지 잘라내서 반환
+    res = str.slice(7);
+    document.write(res, '<br>');
+
+    let con1 = str.indexOf('Kiwi');
+    let con2 = str.indexOf('Melon');
+  
+    res = str.slice(con1,con2);
+    document.write(res, '<br>');
+
+    // 첫번째 인수인 시작 위치를 음수로 주면, 문자열의 끝에서부터 거꾸로 읽게 됨
+    res = str.slice(-10);
+    document.write(res, '<br>');
+
+    // 5) substring()
+    // slice() 함수와 동일한 기능
+    // 인수로 음수를 허용하지 않는다는 차이
+    res = str.substring(7,13);
+    document.write(res, '<br>');
+    res = str.substring(7);
+    document.write(res, '<br>');
+
+    // 6) substr()
+    // 시작 위치에서 지정한 길이 만큼 잘라내서 반환
+    res = str.substr(7,10);
+    document.write(res, '<br>');
+    res = str.substr(7);
+    document.write(res, '<br>');
+    res = str.substr(-10);
+    document.write(res, '<br>');
+
+
+    // 7) replace()
+    // 문자열 내의 특정 문자열을 지정한 문자열로 바꾸고 새 문자열을 반환
+    // 이때 바꾸려는 문자열이 하나 이상 있더라도 처음 발견된 문자열만 바꾸게 됨
+    document.write(`<h4>문자열 변환</h4>`);
+    str = "Please visit Seoul and Seoul!";
+    let n = str.replace('Seoul','Jeju');
+    document.write(n, '<br>');
+    n = str.replaceAll('Seoul','Jeju'); //2021년 문법
+    document.write(n, '<br>');
+
+    // 대소문자 구분함!!
+    n = str.replace('SEOUL','Jeju');
+    document.write(n, '<br>');
+
+    // 정규 표현식과 함께 사용
+    n = str.replace(/SEOUL/i,'Jeju'); //i=insensitive, 대소문자를 구분하지 않겠다는 뜻
+    document.write(n, '<br>');
+    n = str.replace(/SEOUL/gi,'Jeju'); //g=global, 일치하는 모든 문자열을 찾겠다는 뜻 g와i 혼용도 가능
+    document.write(n, '<br>');
+
+    // 8) toUpperCase();, toLowerCase();
+    // 문자열을 모두 대문자로 변경
+    let text1 = 'Hello World!';
+    let text2 = text1.toUpperCase();
+    document.write(text2, '<br>');
+    text2 = text1.toLocaleUpperCase();
+    document.write(text2, '<br>');
+
+    // 문자열을 모두 소문자로 변경
+    text2 = text1.toLowerCase();
+    document.write(text2, '<br>');
+
+    // 실습: 주민등록번호를 입력받은 후 정보가 노출되지 않도록 뒤의 여섯자리는 *******로 출력하세요
+    document.write(`<h4>실습: 주민등록번호 마스킹</h4>`);
+    const userSsn = prompt('주민등록번호를 입력하세요.');
+
+    const maskSsn = userSsn.substring(0, userSsn.length - 6)+'******';
+    document.write(maskSsn,'<br>');
+    document.write(userSsn.substr(0,8)+'******<br>');
+
+    // 9) concat(0
+    // 2개 이상의 문자열을 하나의 문자열로 합치고 새 문자열로 반환
+    document.write(`<h4>문자열 결합</h4>`);
+    text1 = 'Hello';
+    text2 = 'World!';
+    let text3 = text1.concat(' ','💟', text2);
+    document.write(text3,'<br>');
+    let text4 = text1 + ' ' + text2;
+    document.write(text4,'<br>');
+
+
+    // 10) trim
+    // 문자열의 앞, 뒤 공백을 모두 제거
+    str = '                Hello World!                 ';
+    console.log(str);
+    console.log(str.trim());
+
+    // 11) charAt()
+    // 문자열에서 특정 인덱스에 해당하는 문자 하나를 반환
+    document.write(`<h4>특정 문자 1개 추출</h4>`)
+    str = 'HELLO WORLD';
+    document.write(str.charAt(0),'<br>');
+    document.write(str.charAt(5),'<br>');
+
+    // 12) charCodeAt()
+    // 문자열에서 특정 인덱스에 해당하는 문자 하나의 유니코드 값을 반환
+    document.write(str.charCodeAt(0),'<br>');
+    document.write('가나다'.charCodeAt(1),'<br>');
+
+    // 13) split()
+    // 특정 구분자를 기준으로 문자열을 분리해서 배열로 반환
+    document.write(`<h4>문자열 배열로 쪼개기</h4>`);
+    const birthday = '2022-10-15';
+    const arrBirthday = birthday.split('-'); // 하이픈을 기준으로 문자열을 분리
+    console.log(arrBirthday);
+
+
+
+</script>
 </body>
 </html>
