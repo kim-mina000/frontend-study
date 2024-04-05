@@ -32,14 +32,36 @@
 
       
       // 풀이4
-      const fileExt = fileInput.files[0].name.slice(-4).toLowerCase();
-      for (let i = 0; i < imgFileExt.length; i++){
-        if( fileExt.includes(imgFileExt[i]) ){
-          con = true;
+      // const fileExt = fileInput.files[0].name.slice(-3).toLowerCase();
+      // for (let i = 0; i < imgFileExt.length; i++){
+      //   if( fileExt.includes(imgFileExt[i]) ){
+      //     con = true;
+      //   }
+      // }
+      // if (con !== true) alert('이미지 파일이 아닙니다!'); 
+
+      // 선생님 풀이
+      const fileName =  fileInput.files[0].name;
+      console.log(fileName);
+      const fileExt = fileName.substring(fileName.lastIndexOf('.') + 1).toLowerCase();
+      console.log(fileExt);
+      // if ( !extCheck(fileExt,imgFileExt) ) alert('이미지 파일이 아닙니다!');
+
+      // 개선 코드
+      if (!imgFileExt.includes(fileExt)) alert('이미지 파일이 아닙니다!');
+
+    });
+
+    function extCheck(fileExt, arr) {
+      let valid = false;
+      for (let i = 0; i < arr.length; i++){
+        if (fileExt.indexOf(arr[i]) > -1){
+          valid = true;
+          break;
         }
       }
-      if (con !== true) alert('이미지 파일이 아닙니다!'); 
-    });
+      return valid;
+    }
     
   </script>
 </body>

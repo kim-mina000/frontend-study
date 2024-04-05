@@ -209,6 +209,153 @@
     console.log(arrBirthday);
 
 
+    // 2. Array 객체
+    // 여러 데이터를 순차적으로 저장 가능한 객체로 배열을 다룰 때 유용한 속성과 함수를 제공
+    // 배열 객체 생성 3가지 방식
+
+    // 첫번째 방식 (생성과 동시에 초기화)
+    // 변수 = new Array(값1, 값2, 값3, ...);
+
+    // 두번째 방식 (빈객체 생성 후 값입력)
+    // 변수 = new Array();
+    // 변수[0] = 값1;
+    // 변수[1] = 값2;
+    // 변수[2] = 값3;
+
+    // 세번째 방식 (리터럴 방식)
+    // ex) []는 배열, {}은 객체, ""는 스트링등 사용 부호에 따라 데이터타입이 달라지는 것
+    // 변수 = [값1, 값2, 값3, ...]; => 리터럴 방식
+
+    document.write(`<h1>Array 객체</h1>`);
+    const arr = ['Apple','Banana','Mango'];
+
+    // 배열 요소 변경
+    // 인덱스로 접근해서 새로운 요소를 할당
+    arr[0] = 'Kiwi';
+    console.log(arr);
+
+    // 배열 요소 접근
+    document.write(`<h4>배열값 가져오기-1</h4>`);
+    document.write(arr[0],'<br>');
+    document.write(arr[1],'<br>');
+    document.write(arr[2],'<br>');
+
+    document.write(`<h4>배열값 가져오기-2</h4>`);
+    for (let i = 0; i < arr.length; i++){
+      document.write(arr[i],'<br>');
+    }
+
+    document.write(`<h4>배열값 가져오기-3(권장안함)</h4>`);
+    for (const i in arr){ // for in 문 -> key 값을 가져옴
+      document.write(arr[i],'<br>');
+    }
+
+    document.write(`<h4>배열값 가져오기-4</h4>`);
+    for (const el of arr){ // for of 문 -> value 값을 가져옴
+      document.write(el,'<br>');
+    }
+
+    document.write(`<h4>배열값 가져오기-5</h4>`);
+    arr.forEach((element, i)=>{document.write(element,'<br>')});
+    arr.forEach(function(element, index){document.write(index,": ",element,'<br>')});
+
+    // 1) toString()
+    // 배열 안의 모든 요소를 쉼표(,)를 이용해 결합해서 하나의 문자열로 반환
+    let fruits = ['Banana','Apple','Orange','Mango','Pineapple'];
+    console.log(fruits.toString());
+
+    // 2) join()
+    // 배열 안의 모든 요소를 지정한 문자를 이용해 결합해서 하나의 문자열로 반환
+    console.log(fruits.join('-'));
+
+    // 3) pop()
+    // 배열에서 마지막 데이터를 제거하고, 마지막 데이터를 반환
+    // ★ 원본 배열이 변경됨 ★
+    let x = fruits.pop();
+    console.log(x);
+    console.log(fruits);
+
+    // 4) shift()
+    // 배열에서 첫번째 데이터를 제거하고, 첫번째 데이터를 반환
+    // ★ 원본 배열이 변경됨 ★
+    x = fruits.shift();
+    console.log(x);
+    console.log(fruits);
+
+    // 5) push()
+    // 배열의 맨뒤에 새로운 요소를 추가하고, 배열의 길이를 반환
+    // ★ 원본 배열이 변경됨 ★
+    x = fruits.push('Watermelon');
+    console.log(x);
+    console.log(fruits);
+
+    // 6) unshift()
+    // 배열의 맨앞에 새로운 요소를 추가하고, 배열의 길이를 반환
+    // ★ 원본 배열이 변경됨 ★
+    x = fruits.unshift('Watermelon');
+    console.log(x);
+    console.log(fruits);
+
+    // 7) splice()
+    // 새로운 요소를 특정 위치에 추가하거나 기존 요소를 삭제할 수도 있음
+    // ★ 원본 배열이 변경됨 ★
+    // fruits.splice(index, howmany,item1, ..., itemX);
+    // index: 항목을 추가하거나 제거할 인덱스 번호
+    // howmany: 제거할 항목 수
+    // 나머지 파라미터: 추가할 새 요소
+    fruits.splice(2,0,'Lemon','Melon'); // 2번 인덱스에 0개를 제거하고 'Lemon'과 'Melon'을 추가
+    console.log(fruits);
+
+    // 8) concat()
+    // 두개 이상의 배열을 하나의 배열로 결합
+    // 새로운 배열로 반환 ★ 원본 배열이 변경되지 않음 ★
+    const arr1 = ['Cecil', 'Lon'];
+    const arr2 = ['Emli', 'Tobi', 'Lin'];
+    const arr3 = ['Robin', 'Morgan'];
+    const myCilderen = arr1.concat(arr2,arr3);
+    console.log(myCilderen);
+
+    // 9) slice()
+    // 지정된 시작과 끝 위치(포함되지 않음) 구간만큼 잘라내서 반환
+    // 새로운 배열로 변환
+    fruits = ['Banana','Orange','Lemon','Apple','Mango',];
+    const citrus = fruits.slice(3);
+    console.log(citrus);
+    const citrus2 = fruits.slice(1,3);
+    console.log(citrus2);
+
+    // 10) sort()
+    // 배열에 문자형 데이터가 있는 경우 오름차순으로 정렬
+    // ★ 원본 배열이 변경됨 ★
+    fruits = ['Banana','Orange','Lemon','Apple','Mango'];
+    console.log(fruits.sort());
+
+    // ★ 배열 안에 숫자형 데이터가 있더라도 기본적으로는 문자로 인식해서 오름차순으로 정렬
+    const points = [40, 100 ,1 ,5 ,25 ,10];
+    console.log(points.sort());
+    // '25'는 '100'보다 크다, 왜냐하면 '2'가 '1'보다 크기 때문
+    // 그래서 숫자 값으로 정렬하려면 정렬(비교) 함수를 정의해서 사용해야 함
+    // array.sort(정렬함수);
+    // 정렬함수: function(a, b){ return a - b; }
+    points.sort(function(a, b){ return a - b; })
+    console.log(points);
+    // 정렬 원리
+    // 음수가 나오면 a, b 순으로 두 요소의 위치를 바꾸지 않음
+    // 양수가 나오면 b, a 순으로 두 요소의 위치를 바꿔줌
+    // 두 수의 차가 0이 나오면 변화 없음
+    // [40, 100 ,1 ,5 ,25 , 10] 40 - 100 = -60 (변함없음)
+    // [40, 100 ,1 ,5 ,25 , 10] 100 - 1 = 99 (양수이므로 바꿔줌)
+    // [40, 1, 100 ,5 ,25 , 10] 100 - 5 = 95
+    // [40, 1, 5, 100, 25 , 10]
+    // [40, 1, 5,  25, 100, 10]
+    // [40, 1, 5,  25, 10, 100] 
+    // [1, 40, 5,  25, 10, 100]
+    // [1, 5, 40, 25, 10, 100]... 위치가 바뀌지 않을때까지 계속 반복
+    
+    points.sort(function(a, b){ return b - a; })
+    console.log(points);
+
+    // 11) 
 
 </script>
 </body>

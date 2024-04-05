@@ -13,12 +13,28 @@
     // 2 또는 4 이면 '여자입니다.'
 
     const ssn = prompt('주민등록번호를 입력하세요.');
+    // const gender = ssn.slice(6,7);
+    // const gender = ssn.charAt(6);
+    const gender = ssn[6];
+    // 유사배열이기 때문에 인덱스값을 넣는것도 가능
 
     // 풀이1
     const ssnNum = ssn.slice(-7);
-    if (ssnNum.charAt(0) === '1' || ssnNum.charAt(0) === '3') document.write('남자입니다');
-    else if (ssnNum.charAt(0) === '2' || ssnNum.charAt(0) === '4') document.write('여자입니다');
+    let msg = '존재하지 않는 성별 입니다';
+    // if (ssnNum.charAt(0) === '1' || ssnNum.charAt(0) === '3') document.write('남자입니다');
+    // else if (ssnNum.charAt(0) === '2' || ssnNum.charAt(0) === '4') document.write('여자입니다');
 
+    switch (gender) {
+      case '1':
+      case '3':
+        msg = '남자입니다';
+        break;
+      case '2':
+      case '4':
+        msg = '여자입니다';
+        break;
+    }
+    document.write(msg);
     
   </script>
 </head>

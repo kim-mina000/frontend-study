@@ -12,12 +12,13 @@
 
     // 풀이2
     const name = prompt('이름을 입력해주세요(영문):');
-    const number = prompt('연락처를 입력해 주세요: ');
-
     const upperName = name.toUpperCase();
     document.write(upperName, '<br>');
     
-    const numberSsn = number.slice(0,7)+'****';
+    
+    const number = prompt('연락처를 입력해 주세요: ');
+    // const numberSsn = number.slice(0,7)+'****';    
+    const numberSsn = number.substring(0, number.length - 4)+'****';
     document.write(numberSsn, '<br>'); 
     
   </script>
