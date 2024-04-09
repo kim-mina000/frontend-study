@@ -15,8 +15,8 @@
     const lottoArr = []; // 빈 배열
     
     // 풀이6
-    for (let i = 1; lottoArr.length <= 6; i++){
-      let newNum = (Math.random()*100)%45;
+    while(lottoArr.length <= 6){
+      let newNum = Math.floor((Math.random()*100) % 45) + 1;
       console.log(newNum);
       if (lottoArr.indexOf(newNum) === -1){
         lottoArr.push(newNum);
