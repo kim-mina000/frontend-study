@@ -180,6 +180,30 @@
       osImg = 'android.png';
     }
     document.write(`<img src="images/${osImg}">`);
+
+    
+    // Tip! 위치 정보(좌표) 가져오기 (위에 ***** 참조)
+    // HTML Geolocation API는 사용자의 위치를 찾는 데 사용
+
+    function geolocation(){
+      if(navigator.geolocation){
+        // getCurrentPosition(함수1,함수2,옵션) : 사용자의 위치를 반환
+        // 함수1 -> 사용자의 정보를 가져오는데 성공했을때 실행되는 함수
+        // 함수2 -> 사용자의 정보를 가져오는데 실패했을때 실행되는 함수
+        // 옵션 -> 시간 설정 등
+        navigator.geolocation.getCurrentPosition((position)=>{
+          console.log(position);
+          alert(`위도: ${position.coords.latitude}, 경도: ${position.coords.longitude}`);
+        });
+      } else {
+        alert(`이 브라우저는 위치정보가 지원되지 않습니다.`);
+      }
+    }
+
+    // (참고)
+    // navigator.geolocation.watchPosition(); 사용자의 현재 위치를 반환하고, 사용자가 움직일 때마다 업데이트 된 위치를 계속 반환
+    // navigator.geolocation.clearWatch(); watchPosition()을 취소
+
   </script>
 </body>
 </html>
