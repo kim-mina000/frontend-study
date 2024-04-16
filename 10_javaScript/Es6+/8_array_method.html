@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 유용한 배열 메소드 (Es5)
+
+    // 1. array.map(function(currentValue, index, arr), thisValue)
+    // 맵 함수 문법 : array.map(function(currentValue, index))
+    // 기존 배열의 요소를 이용해서 새로운 배열을 만듦
+    // 기존 배열의 각 요소에 대해 한번씩 함수를 호출하고 반환하는 값으로 새로운 배열을 만듦
+    // ★ 원래 배열을 변경하지 않음 ★
+
+    // 배열의 모든 값에 10일 곱한 새 배열 만들기
+    const numbers = [65, 44, 12, 4];
+    // 예상결과 : [650, 440, 120, 40] ;
+
+    const numbers10 = numbers.map(currentValue => currentValue * 10 );
+    console.log(numbers10);
+
+    
+    // ******************************************************************************
+    // Quiz
+    // 각 사람의 전체 이름을 가진 새 배열 만들기
+    // 예상 결과: ['Goni Kim', 'Zero Cho', 'Velopert Kim']
+    const persons = [
+      { firstName: 'Goni', lastName: 'Kim' },
+      { firstName: 'Zero', lastName: 'Cho' },
+      { firstName: 'Velopert', lastName: 'Kim' }
+    ];
+
+    const fullPersons = persons.map( arr => arr['firstName'] +' '+ arr['lastName']);
+    console.log(fullPersons);
+    
+  </script>
+</body>
+</html>
