@@ -202,9 +202,11 @@
     // 다음과 같은 코드에서, 문자열의 각 문자가 배열의 각 원소가 되도록 새 배열을 생성하자.
     const apple = 'Apple';
 
-    const myArr = apple.split(''); // 여기에 코드를 추가하자.
+    // const myArr = apple.split(''); // 여기에 코드를 추가하자.
+    const myArr = Array.from(apple);
     console.log(myArr);
-    // 예상 결과: ['A', 'p', 'p', 'l', 'e']
+    console.log([...apple]); //스프레드 연산자
+    // 예상 결과: ['A', 'p', 'p', 'l', 'e'] 
 
     // 2. 다음 코드의 올바른 출력은?
     let numberArray = [3, 10, 18, 20];
