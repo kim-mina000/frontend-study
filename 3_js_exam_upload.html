@@ -65,13 +65,14 @@
     }
 
 
-    // 6.
+    // 6. ★★
     // 다음 주어진 파일이름에서 확장자를 추출하여 아래 결과가 나오도록 출력해보세요.
     // [추출 결과]: pdf
     console.log(`6. 확장자 추출`);
     const fileName = '기획서 수정.최종본.진짜마지막.PDF';
 
-    const pdf = fileName.slice(-3).toLowerCase();
+    // const pdf = fileName.slice(-3).toLowerCase();
+    const pdf = fileName.substring(fileName.lastIndexOf('.')+1).toLowerCase();
     console.log(pdf);
 
 
@@ -90,13 +91,19 @@
     const race = '100m dash';
     const runners = ['Kim', 'Lee', 'Park'];
 
-    const results = runners.map((runner, index) => {
-      return {
+    // const results = runners.map((runner, index) => {
+    //   return {
+    //     name: runner,
+    //     race: race,
+    //     place: index + 1 
+    //   };
+    // });
+    const results = runners.map((runner, index) => ({
         name: runner,
         race: race,
         place: index + 1 
-      };
-    });
+      })
+    );
     console.log(results);
 
 
@@ -112,7 +119,7 @@
 
 
 
-    // 10.
+    // 10. ★★★
     // 아래 액션 객체의 데이터들(type, id, title, content, done)을 구조 분해 할당 해보세요.
     const action = {
       type: 'action/name',
@@ -124,7 +131,8 @@
       }
     };
 
-    const { type, id, title, content, done } = action; // 여기에 작성
+    const { type, payload:{id, title, content, done} } = action; // 여기에 작성
+    console.log(type, id, title, content, done);
 
 
     // 11.
@@ -160,7 +168,7 @@
     ];
 
     const deleteMember = str => members.filter( arr => arr.id !== str);
-    console.log(deleteMember('a3'));
+    console.log(deleteMember('a3'));  
 
 
     // 13.
