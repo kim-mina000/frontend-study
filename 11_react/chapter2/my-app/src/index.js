@@ -7,6 +7,9 @@ import JsxUse from './Chapter3/3.4/JsxUse';
 import Library from './Chapter3/Library';
 import Clock from './Chapter4/Clock';
 import ProsUse from './Chapter5/5.3/ProsUse';
+import CommentEx from './Chapter5/5.6/CommentEx';
+import Comment from './Chapter5/Comment';
+import CommentList from './Chapter5/CommentList';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 // Root DOM Node에 리액트 컴포넌트를 렌더링 하도록 하는 함수(React 엘리먼트를 DOM 엘리먼트로 렌더링하는 역할)
@@ -17,7 +20,25 @@ root.render(
     // 3장 예제
     // <JsxUse />
     // <Library />
-    <ProsUse />
+    // <ProsUse />
+    // <>    
+    //     <CommentEx 
+    //     user={{
+    //         name:'Hello kitty', 
+    //         avatarUrl:'http://placekitten.com/200/300'
+    //     }} 
+    //     text="리액트를 즐기세요" 
+    //     date={new Date()} />
+
+    //     <CommentEx 
+    //     user={{
+    //         name:'Hello puppy', 
+    //         avatarUrl:'http://placedog.net/200/300'
+    //     }} 
+    //     text="강아지를 즐기세요" 
+    //     date={new Date()}/>
+    // </>
+    <CommentList />
 );
 
 // 4장 예제
