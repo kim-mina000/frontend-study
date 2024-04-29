@@ -11,6 +11,11 @@ import CommentEx from './Chapter5/5.6/CommentEx';
 import Comment from './Chapter5/Comment';
 import CommentList from './Chapter5/CommentList';
 import Counter from './Chapter7/7.2/Counter';
+import Toggle from './Chpater8/8.1/Toggle';
+import MyButton from './Chpater8/8.2/MyButton';
+import ConfirmButton from './Chpater8/ConfirmButton';
+import Greeting from './Chapter9/9.1/Greeting';
+import LoginControl from './Chapter9/9.2/LoginControl';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 // Root DOM Node에 리액트 컴포넌트를 렌더링 하도록 하는 함수(React 엘리먼트를 DOM 엘리먼트로 렌더링하는 역할)
@@ -40,7 +45,17 @@ root.render(
     //     date={new Date()}/>
     // </>
     // <CommentList />
-    <Counter />
+    // <Counter />
+
+    // 8장
+    // <Toggle />
+    // <MyButton />
+
+    // <ConfirmButton />
+
+    // 9장
+    // <Greeting />
+    <LoginControl />
 );
 
 // 4장 예제
