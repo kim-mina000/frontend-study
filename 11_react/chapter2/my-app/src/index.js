@@ -20,6 +20,10 @@ import MailBox from './Chapter9/9.3/MailBox';
 import LoginControlRefactoring from './Chapter9/9.3/LoginControlRefactoring';
 import MainPage from './Chapter9/9.4/MainPage';
 import Landingpage from './Chapter9/Landingpage';
+import NumberList from './Chahpter10/10.1/NumberList';
+import ListKey from './Chahpter10/10.2/ListKey';
+import AttendanceBook from './Chahpter10/AttendanceBook';
+import NameForm from './Chapter11/11.2/NameForm';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 // Root DOM Node에 리액트 컴포넌트를 렌더링 하도록 하는 함수(React 엘리먼트를 DOM 엘리먼트로 렌더링하는 역할)
@@ -63,7 +67,15 @@ root.render(
     // <MailBox unReadMessages={['React','Re: React','Re:Re: React']}/>
     // <LoginControlRefactoring />
     // <MainPage />
-    <Landingpage />
+    // <Landingpage />
+
+    // 10장
+    // <NumberList />
+    <ListKey />
+    // <AttendanceBook />
+
+    // 11장
+    // <NameForm />
 );
 
 // 4장 예제
