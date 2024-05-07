@@ -17,7 +17,7 @@ function ReservationRefactoring() {
     console.log(e.target); // 현재 이벤트가 발생한 대상 객체
     
     const { type, name, checked, value } = e.target;
-    const inputValue = type === 'checkbox' ? checked : value;
+    const inputValue = (type === 'checkbox') ? checked : value;
     console.log(name, inputValue);
 
     // 중요

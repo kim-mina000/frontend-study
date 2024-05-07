@@ -20,18 +20,43 @@ import { useState } from "react";
 // 2) 각각의 state를 여러 개 만들어도 되고 객체 형태로 한번에 관리해도 됨
 
 function SignUp() {
+  // 여러 개의 state로 관리 시
+  // const [name, setName] = useState('');
+  // const [gender, setGender] = useState('남자');
+
+  // const handelChangeName = (e) => {
+  //   setName(e.target.value);
+  // }
+
+  // const handleChangeGender = (e) => {
+  //   setGender(e.target.value);
+  // }
+
+  // 객체로 관리 시
   const [inputs, setInputs] = useState({
     name: '',
     gender: 'man'
   });
-  const {name, gender} = inputs;
-
+  const {name, gender} = inputs; // 구조 분해 할당, 키값과 변수명이 동일해야 구조 분해 할당 가능
+  
   const handleInputChange = (e) => {
-    const {name2, gender2} = e.target;
+    const {name, value} = e.target;
+    console.log(name, value);
+
+    // 방법 1
+    // const copyObj = {
+    //   ...inputs
+    // };
+    // copyObj[name] = value;
+    // setInputs(copyObj);
+    
+    // 방법 2
     setInputs({
-      
-    })
+      ...inputs, // 기존의 inputs 객체를 복사한 뒤
+      [name]:value // name값을 키로 갖는 속성을 동적으로 정의
+    });
   }
+
   
   const handleSubmit = (e) =>{  
     e.preventDefault();
@@ -39,20 +64,27 @@ function SignUp() {
   }
 
   return (
-    <form onSubmit={undefined}>
+    <form onSubmit={handleSubmit}>
       <label>
         이름:
-        <input type="text" onChange={handleInputChange} />
+        {/* <input type="text" value={name} onChange={handelChangeName} /> */}
+        <input type="text" name="name" value={name} onChange={handleInputChange} />
+      </label>
+
         <br />
-        <select onChange={handleInputChange}>
+      
+      <label>성별
+        {/* <select value={gender} onChange={handleChangeGender}> */}
+        <select value={gender} name="gender" onChange={handleInputChange}>
           <option value="woman">여자</option>
           <option value="man">남자</option>
           <option value="dog">강아지</option>
         </select>
       </label>
-      <button type="submit" onClick={handleSubmit}>제출</button>
+      <button type="submit">가입하기</button>
     </form>
   );
 };
 
+// 앞으로는 state를 관리할때 객체로 관리 하는것을 추천 ,,, 코드가 훨씬 간단해짐
 export default SignUp;
