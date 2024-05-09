@@ -15,6 +15,9 @@ function PostDetail(props) {
           // 배열이나 객체의 state를 변경하는 법 
           // 새로운 배열 또는 객체를 만들어 변경하고 set함수에 넣어줘야 함
           const copyPosts = [...posts];
+          // if (copyPosts[currentIndex].indexOf()) {
+            
+          // }
           copyPosts[currentIndex] = `${copyPosts[currentIndex]} (수정됨)`;
           
           setPosts(copyPosts);
@@ -24,7 +27,7 @@ function PostDetail(props) {
           // 기존 state가 신규 state랑 같은 경우, 변경 안함
           // 2. 배열/객체의 특징
           // 변수에 주소(참조)값이 저장됨
-          // 
+          
         }}
       >수정하기</button>
     </div>
