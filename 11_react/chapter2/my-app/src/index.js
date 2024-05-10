@@ -36,6 +36,12 @@ import UnitCalculator from './Chapter12/UnitCalculator';
 import FancyBorder from './Chapter13/13.1.1.1/FancyBorder';
 import WelcomeDialog from './Chapter13/13.1.1.1/WelcomeDialog';
 import SplitPaneSection from './Chapter13/13.1.1.2/SplitPaneSection';
+import Dialog from './Chapter13/13.1.2/Dialog';
+import DialogContainer from './Chapter13/13.1.2/DialogContainer';
+import SignUpDialog from './Chapter13/13.1.3/SignUpDialog';
+import Card from './Chapter13/Card';
+import ProfileCard from './Chapter13/ProfileCard';
+import StyledPage from './Chapter15/StyledPage';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 // Root DOM Node에 리액트 컴포넌트를 렌더링 하도록 하는 함수(React 엘리먼트를 DOM 엘리먼트로 렌더링하는 역할)
@@ -105,7 +111,13 @@ root.render(
     // 13장
     // <FancyBorder />
     // <WelcomeDialog />
-    <SplitPaneSection />
+    // <SplitPaneSection />
+    // <DialogContainer />
+    // <SignUpDialog />
+    // <ProfileCard />
+
+    // 15장
+    <StyledPage />
     
 
 
