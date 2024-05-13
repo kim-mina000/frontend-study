@@ -42,6 +42,8 @@ import SignUpDialog from './Chapter13/13.1.3/SignUpDialog';
 import Card from './Chapter13/Card';
 import ProfileCard from './Chapter13/ProfileCard';
 import StyledPage from './Chapter15/StyledPage';
+import ThemeApp from './Chapter15/theme/ThemeApp';
+import Blocks from './Chapter15/theme/Blocks';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 // Root DOM Node에 리액트 컴포넌트를 렌더링 하도록 하는 함수(React 엘리먼트를 DOM 엘리먼트로 렌더링하는 역할)
@@ -117,7 +119,8 @@ root.render(
     // <ProfileCard />
 
     // 15장
-    <StyledPage />
+    // <StyledPage />
+    <Blocks />
     
 
 
