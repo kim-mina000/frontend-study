@@ -3,7 +3,10 @@ import styled from "styled-components";
 const Wrapper = styled.div`
   display: flex;
   padding: 1rem;
-  background-color: lightgray;
+  /* background-color: lightgray; */
+  background-color: ${props => { 
+        console.log(props.theme);
+      return props.theme.gray400}};
 `
 
 const Block = styled.div`
@@ -41,7 +44,7 @@ const BlockItems = [
   {
     label: '3',
     padding: '2rem',
-    backgroundColor: '#BACD92'    
+    backgroundColor: '#F5DAD2'    
   }
 ]
 function Blocks() {

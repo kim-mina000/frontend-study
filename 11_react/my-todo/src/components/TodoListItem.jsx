@@ -1,5 +1,6 @@
-import { MdCheckBoxOutlineBlank, MdEdit, MdRemoveCircleOutline } from "react-icons/md";
-import { styled } from "styled-components";
+import { useState } from "react";
+import { MdCheckBox, MdCheckBoxOutlineBlank, MdEdit, MdRemoveCircleOutline } from "react-icons/md";
+import { css, styled } from "styled-components";
 
 const TodoListItemWrapper = styled.div`
   padding: 1rem;
@@ -25,7 +26,9 @@ const Checkbox = styled.div`
 
   svg{
     font-size: 1.5rem;
-    color: #474F7A;
+    color: #1F2544;
+    color: ${props => props.done && '#474F7A'};
+
   }
 `;
 
@@ -33,17 +36,25 @@ const Text = styled.div`
   margin-left: 0.5rem;
   flex: 1;
   color: #1F2544;
+
+  /* 조건부 스타일링 시 여러 개의 css를 설정할 때는 아래와 같이 사용 */
+  ${props => props.done && 
+    css`
+    color: #81689d88;
+    text-decoration: line-through;
+    `
+  }
 `;
 
 const Remove = styled.div`
   display: flex;
   align-items: center;
   font-size: 1.5rem;
-  color: #ff6b6b;
+  color: #81689D;
   cursor: pointer;
 
   &:hover {
-    color: #ff8787;
+    color: #5e4b74;
   }
 `;
 
@@ -51,12 +62,12 @@ const Edit = styled.div`
   display: flex;
   align-items: center;
   font-size: 1.5rem;
-  color: #ff6b6b;
+  color: #81689D;
   cursor: pointer;
   margin-right: 10px;
 
   &:hover {
-    color: #ff8787;
+    color: #5e4b74;
   }
 `;
 
@@ -64,16 +75,25 @@ const Edit = styled.div`
 // todo 객체를 props로 받아와서 상태에 따라 다른 스타일의 ui를 보여줌
 
 function TodoListItem(props) {
+  const {id, text, done, onRemove} = props;
+
+  const [checkBox, setCheckBox] = useState(done);
+  const handleCheckBox = (e,index) => {
+    console.log(e.target);
+    console.log();
+    return;
+  }
+
   return (
     <TodoListItemWrapper>
-      <Checkbox>
-        <MdCheckBoxOutlineBlank />
+      <Checkbox done={done} onClick={handleCheckBox}>
+        {done? <MdCheckBox /> : <MdCheckBoxOutlineBlank />}
       </Checkbox>
-      <Text>할일</Text>
+      <Text done={done}>{text}</Text>
       <Edit>
         <MdEdit />
       </Edit>
-      <Remove>
+      <Remove onClick={() => onRemove(id)}>
         <MdRemoveCircleOutline />
       </Remove>
     </TodoListItemWrapper>

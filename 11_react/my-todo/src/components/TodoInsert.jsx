@@ -1,6 +1,7 @@
 import {styled} from "styled-components";
 // Tip: as를 사용하여 별칭을 붙여 사용하면 추후 아이콘 바꿀때 한곳만 바꾸면 되서 편함!
 import { MdAdd as AddIcon } from "react-icons/md";
+import { useState } from "react";
 
 // 새로운 항목을 입력하고 추가할 수 있는 컴포넌트
 // state를 통해서 input의 상태를 관리
@@ -57,10 +58,28 @@ const StyledButton = styled.button`
   }
 `;
 
-function TodoInsert() {
+function TodoInsert({ onInsert }) {
+  const [value, setValue] = useState('');
+  const handleChange = (e) => {
+    setValue(e.target.value);
+  }
+
+  const handleSubmit = (e) => {
+    if (!value){
+      alert('뭐 안빼먹었어?');
+      return; // 함수종료
+    }
+    
+    e.preventDefault();
+    onInsert(value);
+    setValue('');
+    // 유효성 검사 추가
+  }
+
   return (
-    <TodoInsertWrapper>
-      <StyledInput type="text" placeholder="할 일을 입력하세요."/>
+    <TodoInsertWrapper onSubmit={handleSubmit}>
+      <StyledInput type="text" placeholder="할 일을 입력하세요." 
+      value={value} onChange={handleChange}/>
       <StyledButton type="submit">
         <AddIcon />
       </StyledButton>
