@@ -45,6 +45,10 @@ import StyledPage from './Chapter15/StyledPage';
 import ThemeApp from './Chapter15/theme/ThemeApp';
 import Blocks from './Chapter15/theme/Blocks';
 import ComponentVariable from './Chapter7/7.6/ComponentVariable';
+import CounterEffect from './Chapter7/7.3/ex1/CounterEffect';
+import TimerContainer from './Chapter7/7.3/ex2/TimerContainer';
+import EffectSummary from './Chapter7/7.3/ex3/EffectSummary';
+import EffectContainer from './Chapter7/7.3/ex3/EffectContainer';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 // Root DOM Node에 리액트 컴포넌트를 렌더링 하도록 하는 함수(React 엘리먼트를 DOM 엘리먼트로 렌더링하는 역할)
@@ -78,7 +82,11 @@ root.render(
 
     // 7장
     // <TextInputWithFocusButton />
-    <ComponentVariable />
+    // <ComponentVariable />
+    // <CounterEffect />
+    // <TimerContainer />
+    // <EffectSummary />
+    <EffectContainer />
 
     // 8장
     // <Toggle />

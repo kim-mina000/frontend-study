@@ -75,18 +75,13 @@ const Edit = styled.div`
 // todo 객체를 props로 받아와서 상태에 따라 다른 스타일의 ui를 보여줌
 
 function TodoListItem(props) {
-  const {id, text, done, onRemove} = props;
+  const {id, text, done, onRemove, onToggle} = props;
 
   const [checkBox, setCheckBox] = useState(done);
-  const handleCheckBox = (e,index) => {
-    console.log(e.target);
-    console.log();
-    return;
-  }
 
   return (
     <TodoListItemWrapper>
-      <Checkbox done={done} onClick={handleCheckBox}>
+      <Checkbox done={done} onClick={() => onToggle(id)}>
         {done? <MdCheckBox /> : <MdCheckBoxOutlineBlank />}
       </Checkbox>
       <Text done={done}>{text}</Text>
