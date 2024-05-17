@@ -10,6 +10,7 @@ import { useState } from 'react';
 import { useRef } from 'react';
 import { useEffect } from 'react';
 import { v4 as uuidv4 } from "uuid";
+import Modal from './components/Modal';
 // Reset은 컴포넌트! ${reset}으로 접근해도 되고 {Reset} 컴포넌트로 접근해도 됨
 
 // 패키지 설치
@@ -52,6 +53,31 @@ function App() {
     //   done: false
     // }
   ]);
+
+  // 모달상태
+  const [showModal, setShowModal] = useState(false);
+  
+  const [editTodo, setEditTodo] = useState({}); // 현재 수정할 todo의 상태
+  const handelOpenModal = (id) =>{
+    // 모달을 열면서 현재 수정할 todo를 state에 저장
+    setEditTodo(todos.find((todo) => todo.id === id));
+    setShowModal(true);
+  }
+  
+  const handelCloseModal = () =>{
+    setShowModal(false);
+  }
+  
+  const handleChange = (e)=>{ // 제어컴포넌트로 관리
+    setEditTodo({...editTodo, text:e.target.value});
+  }
+
+  const handleEdit = () => { // 실제 수정
+    setTodos(todos.map((todo)=>{
+      return todo.id === editTodo.id ? editTodo : todo;
+      handelCloseModal();
+    }))
+  }
   
   // 로컬 스토리지에서 가져오기
   useEffect(()=>{
@@ -138,8 +164,19 @@ function App() {
       <GlobalStyle />
       <TodoTemplate>
         <TodoInsert onInsert={handleInsert}/>
-        <TodoList todos={todos} onRemove={handleRemove} onToggle={handleToggle}/>
+        <TodoList todos={todos} onRemove={handleRemove} onToggle={handleToggle} onModal={handelOpenModal}/>
       </TodoTemplate>
+
+      {/* 수정하기 모달 */}
+      {showModal && (
+      <Modal
+        title="할 일 수정"
+        onCloseModal={handelCloseModal}
+        onEdit = {handleEdit}
+        >
+        <input type='text' value={editTodo.text} onChange={handleChange}/>
+      </Modal>
+      )}
     </>
   );
 }

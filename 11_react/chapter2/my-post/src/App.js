@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import PostDetail from './Components/PostDetail';
 
 // POST앱 CRUD 만들기
@@ -19,9 +19,16 @@ function App() {
   const [likeCount, setLikeCount] = useState([0, 0, 0]);
   const [newTitle, setNewTitle] = useState('');
 
+  let buttonDisabled = true;
+
   
 
   const handleNewTitle = (e) =>{
+    if (e.target.value === '') {
+      buttonDisabled = false;
+    } else {
+      buttonDisabled = true;
+    }
     setNewTitle(e.target.value);
   }
 
@@ -142,7 +149,7 @@ function App() {
             postPosting();
           }
         }}/>
-        <button type='button' onClick={postPosting}>
+        <button type='button' disabled={buttonDisabled} onClick={postPosting}>
           포스트 등록
         </button>
 
