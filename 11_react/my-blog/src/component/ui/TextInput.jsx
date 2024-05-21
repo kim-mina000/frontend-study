@@ -6,7 +6,7 @@ const StyledTextArea = styled.textarea`
   height: ${ props => props.height && props.height+'px'};
   padding: 16px;
   line-height: 20px;
-
+  resize: none;
 `;
 
 // 공통 텍스트 컴포넌트
