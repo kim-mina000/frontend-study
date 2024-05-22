@@ -3,35 +3,28 @@ import SchedulerItemList from "./Scheduler/SchedulerItemList";
 
 const Wrapper = styled.div`
   background: #888;
-  width: 60%;
+  width: 80%;
   height: 100%;
 `;
 
 const Title = styled.h1`
   text-align: left;
-  margin-left: 10px;
+  padding-left: 90px;
   width: 100%;
+  font-family: 'RixInooAriDuriR';
+  font-size: 42px;
 `;
 
-const NextDayContainer = styled.div`
-  background: #333;
-  width: 100%;
-`;
 
 
 function Scheduler() {
   return (
     <Wrapper>
       <Title>
-      스케줄
+      SCHEDULER
       </Title>
-      <NextDayContainer>
-        날짜입력
-        다음 입력
-      </NextDayContainer>
-      {/* <SchedulerItemList>
-
-      </SchedulerItemList> */}
+      <SchedulerItemList>
+      </SchedulerItemList>
     </Wrapper>
   );
 };

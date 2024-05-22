@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Feed from "./Feed";
 import Scheduler from "./Scheduler";
+import { useState } from "react";
 
 const theme ={
   blue : '#93B5C6',
@@ -12,35 +13,31 @@ const theme ={
 
 
 const Wrapper = styled.div`
-  padding: 16px;
   /* width: calc(100% - 32px); */
-  width: 65%;
+  user-select: none;
+  width: 80%;
+  height: 700px;
   margin: 0 auto;
   margin-top: 2rem;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+  font-family: 'notosanskr';
 `;
 
-const Container = styled.div`
-  width: 100%;
-  max-width: 720px;
-  background: pink;
-  display: block;
-
-  & > *:not(:last-child) {
-    margin-bottom: 16px;
-  }
-`;
 
 function MainPage() {
+
+  const [todoList, setTodoList] = useState([]);
+
   return (
     <Wrapper>
       <Scheduler>
 
       </Scheduler>
-      <Feed>
+      <Feed todoList={todoList} setTodoList={setTodoList}>
 
       </Feed>
     </Wrapper>
