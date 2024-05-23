@@ -12,7 +12,7 @@ const Wrapper = styled.div`
   padding-top: 35px;
   background: #333;
   width: 100%;
-  height: 100%;
+  height: 540px; // 질문 이쒜끼가 제말을 안들어요 height:100% 하면 왜 넘칠까요 ,,
   display: flex;
   justify-content: center;
   align-items: baseline;
@@ -21,6 +21,7 @@ const Wrapper = styled.div`
 
 const StyledCalendar = styled(Calendar)`
   width: 80%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   
@@ -64,6 +65,24 @@ const StyledDate = styled.div`
   cursor: pointer;
 `;
 
+const DateView = styled.h2`
+  font-family: 'RixInooAriDuriR';
+  width: 200px;
+  position: absolute;
+  z-index: 10;
+  right: -25%;
+  bottom: 0;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  font-size: 42px;
+`;
+
+
 function SchedulerItemList() {
   const [value, onChange] = useState(new Date());
   
@@ -104,8 +123,15 @@ function SchedulerItemList() {
         onActiveStartDateChange={({ activeStartDate }) =>
           setActiveStartDate(activeStartDate)
         }
+        onClickDay={(e)=>{console.log(e.valueOf().toLocaleString);}}
+        
       />
       <StyledDate onClick={handleTodayClick}>TODAY</StyledDate>
+      <DateView>
+        {`${date.getFullYear()}
+        ${date.getMonth()+1}
+        ${date.getDay()}`}
+      </DateView>
     </Wrapper>
   );
 };

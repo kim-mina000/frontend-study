@@ -9,7 +9,7 @@ const OneDay = styled.div`
 function SchedulerItem({checkDay,oneDay}) {
   return (
     <OneDay>
-      {checkDay}
+      {checkDay}호에
       {oneDay}
     </OneDay>
   );

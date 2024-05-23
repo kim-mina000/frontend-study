@@ -5,6 +5,7 @@ const Wrapper = styled.div`
   background: #888;
   width: 80%;
   height: 100%;
+  position: relative;
 `;
 
 const Title = styled.h1`
@@ -17,6 +18,7 @@ const Title = styled.h1`
 
 
 
+
 function Scheduler() {
   return (
     <Wrapper>
@@ -25,7 +27,9 @@ function Scheduler() {
       </Title>
       <SchedulerItemList>
       </SchedulerItemList>
+
     </Wrapper>
+    
   );
 };
 

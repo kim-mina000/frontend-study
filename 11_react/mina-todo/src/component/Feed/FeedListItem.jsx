@@ -1,5 +1,7 @@
 import styled, {css} from "styled-components";
-import { MdCheckBoxOutlineBlank, MdCheckBox } from "react-icons/md";
+import { MdCheckBoxOutlineBlank, MdCheckBox, MdDelete } from "react-icons/md";
+import { LuDelete } from "react-icons/lu";
+import { TbPencil } from "react-icons/tb";
 import { useState } from "react";
 
 const Wrapper = styled.div`
@@ -14,12 +16,13 @@ const Wrapper = styled.div`
   cursor: pointer;
 
   & + & {
-    margin-top: 1rem;
+    margin-top: 1.5rem;
   }
 `;
 
-const Text = styled.div`
-  /* text-decoration: ${props => props.done && 'line-through'}; */
+const CheckDone =styled.div`
+  width: 80%;
+  display: flex;
   ${ props => props.done &&
   css`
     text-decoration: line-through;
@@ -27,16 +30,51 @@ const Text = styled.div`
   `}
 `;
 
-function FeedListItem({todo}) {
+const TextTodo = styled.span`
+  /* width: 170px; */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+`;
+
+const EditInput = styled.input`
+    width: 80%;
+`;
+
+function FeedListItem({todo:{id, text, date}, setTodoList, editTodo, handleDelete}) {
   const mdCheckStyled = {
-    padding: '10px',
+    padding: '5px 10px 5px',
+  };
+  const iconStyled = {
+    padding: '5px',
   };
 
+  // 완료된 일정 구현
   const [done, setDone] = useState(false);
+  
+  // 수정하기 기능구현
+  const [editBoolean, setEditBoolean] = useState(false);
+  // const [editValue, setEditValue] = useState(text);
+  
+
+
+
   return (
-    <Wrapper onClick={()=> setDone(!done)}>
-      { done ? <MdCheckBox style={mdCheckStyled} />  : <MdCheckBoxOutlineBlank style={mdCheckStyled}/>}
-      <Text done={done}>{todo}</Text>
+    <Wrapper>
+      <CheckDone onClick={()=> setDone(!done)} done={done}>
+        { done ? <MdCheckBox style={mdCheckStyled} />  : <MdCheckBoxOutlineBlank style={mdCheckStyled}/>}
+        { editBoolean ? 
+        <EditInput type="text" value={text} onClick={(e)=>{e.preventDefault()}} onChange={(e)=>editTodo(e.target.value,id)} 
+        onKeyDown={(e)=>{
+          if (e.key === 'Enter') {
+            editTodo(text,id);
+            setEditBoolean(!editBoolean);
+          }
+        }} />
+        :<TextTodo>{text}</TextTodo>}
+      </CheckDone>
+      <TbPencil style={iconStyled} onClick={()=>{setEditBoolean(!editBoolean)}} />
+      <LuDelete style={iconStyled} onClick={()=>{handleDelete(id)}} />
     </Wrapper>
   );
 };

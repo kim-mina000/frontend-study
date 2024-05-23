@@ -39,9 +39,8 @@ const ButtonStyled = styled.button`
   }
 `;
 
-function Feed({todoList,setTodoList}) {
+function Feed({todoList,setTodoList, handleClick, inputValue ,setInputValue}) {
   // 질문1) 
-  const [inputValue, setInputValue] = useState('');
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   // const inputRef = useRef('');
   const handleInput = (e)=>{
@@ -49,10 +48,14 @@ function Feed({todoList,setTodoList}) {
     setInputValue(e.target.value);
     setIsButtonDisabled(e.target.value === '');
   };
-  const handleClick = () =>{
-    setTodoList([...todoList,inputValue]);
-    setInputValue('');
-  }
+
+  const handleEdit = (e) =>{
+    console.log(e.localStorage);  
+  };
+
+  const handleRemove = (id)=>{
+    setTodoList(todoList.filter(e => e.id !== id));
+  };
   return (
     <Wrapper>
       <Title>FEED</Title>
@@ -69,7 +72,7 @@ function Feed({todoList,setTodoList}) {
         />
         <ButtonStyled disabled={isButtonDisabled} onClick={()=>{handleClick()}}>추가</ButtonStyled>
       </InputArea>
-      <FeedList todoList={todoList} />
+      <FeedList todoList={todoList} setTodoList={setTodoList} handleEdit={handleEdit} handleDelete={handleRemove} />
     </Wrapper>
   );
 };
