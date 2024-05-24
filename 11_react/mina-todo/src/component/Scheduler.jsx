@@ -2,10 +2,10 @@ import styled from "styled-components";
 import SchedulerItemList from "./Scheduler/SchedulerItemList";
 
 const Wrapper = styled.div`
-  background: #888;
   width: 80%;
   height: 100%;
   position: relative;
+  font-family: 'notosanskr';
 `;
 
 const Title = styled.h1`
@@ -19,13 +19,13 @@ const Title = styled.h1`
 
 
 
-function Scheduler() {
+function Scheduler({theme, today, date, setDate, todoList}) {
   return (
     <Wrapper>
       <Title>
       SCHEDULER
       </Title>
-      <SchedulerItemList>
+      <SchedulerItemList theme={theme} today={today} date={date} setDate={setDate} todoList={todoList}>
       </SchedulerItemList>
 
     </Wrapper>

@@ -4,16 +4,16 @@ import { useRef, useState } from "react";
 
 
 const Wrapper = styled.div`
-  width: 20%;
+  width: 25%;
   height: 100%;
-  background: #555;
-  padding-left: 30px;
+  padding-left: 20px;
   font-family: 'notosanskr';
   `;
 
 const Title = styled.h1`
   font-family: 'RixInooAriDuriR';
   font-size: 42px;
+  color: ${theme => theme.greyPink};
 `;
 
 const InputArea = styled.div`
@@ -25,6 +25,7 @@ const InputStyled = styled.input`
   width: 75%;
   border-radius: 0.3rem;
   border: 0;
+  background: ${props => props.theme.grey};
 `;
 
 const ButtonStyled = styled.button`
@@ -32,14 +33,22 @@ const ButtonStyled = styled.button`
   height: 2rem;
   border-radius: 0.3rem;
   border: 0;
+  background: #222;
+  color: white;
   cursor: pointer;
 
   &:hover{
+    background: ${props => props.theme.blue};
+    color: white;
+  }
 
+  &:disabled{
+    background: ${props => props.theme.grey};
+    color: #777;
   }
 `;
 
-function Feed({todoList,setTodoList, handleClick, inputValue ,setInputValue}) {
+function Feed({theme,todoList,setTodoList, handleClick, inputValue ,setInputValue, date}) {
   // 질문1) 
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   // const inputRef = useRef('');
@@ -58,9 +67,9 @@ function Feed({todoList,setTodoList, handleClick, inputValue ,setInputValue}) {
   };
   return (
     <Wrapper>
-      <Title>FEED</Title>
+      <Title theme={theme}>FEED</Title>
       <InputArea>
-        <InputStyled value={inputValue} placeholder="할일 추가하기"
+        <InputStyled theme={theme} value={inputValue} placeholder="할일 추가하기"
           type="text"
           // ref={inputRef}
           onChange={handleInput}
@@ -70,9 +79,9 @@ function Feed({todoList,setTodoList, handleClick, inputValue ,setInputValue}) {
             }
           }}
         />
-        <ButtonStyled disabled={isButtonDisabled} onClick={()=>{handleClick()}}>추가</ButtonStyled>
+        <ButtonStyled theme={theme} disabled={isButtonDisabled} onClick={()=>{handleClick()}}>추가</ButtonStyled>
       </InputArea>
-      <FeedList todoList={todoList} setTodoList={setTodoList} handleEdit={handleEdit} handleDelete={handleRemove} />
+      <FeedList todoList={todoList} setTodoList={setTodoList} handleEdit={handleEdit} handleDelete={handleRemove} theme={theme} date={date} />
     </Wrapper>
   );
 };

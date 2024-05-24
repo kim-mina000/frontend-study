@@ -3,6 +3,8 @@ import styled from "styled-components";
 import SchedulerItem from "./SchedulerItem";
 import Calendar from "react-calendar";
 import moment from "moment";
+import { TbCloud } from "react-icons/tb";
+import { IoCloudy } from "react-icons/io5";
 
 // https://velog.io/@hyerani/React-%EC%BA%98%EB%A6%B0%EB%8D%94-%EB%A7%8C%EB%93%A4%EA%B8%B0-react-calendar 뽀뽀
 
@@ -10,9 +12,8 @@ import moment from "moment";
 
 const Wrapper = styled.div`
   padding-top: 35px;
-  background: #333;
   width: 100%;
-  height: 540px; // 질문 이쒜끼가 제말을 안들어요 height:100% 하면 왜 넘칠까요 ,,
+  height: 100%; // 질문 이쒜끼가 제말을 안들어요 height:100% 하면 왜 넘칠까요 ,,
   display: flex;
   justify-content: center;
   align-items: baseline;
@@ -24,6 +25,7 @@ const StyledCalendar = styled(Calendar)`
   height: 100%;
   display: flex;
   flex-direction: column;
+  /* background: #999; */
   
 
   & .react-calendar__navigation {
@@ -37,15 +39,36 @@ const StyledCalendar = styled(Calendar)`
 
   & .react-calendar__month-view__days .react-calendar__tile.react-calendar__month-view__days__day {
     background: transparent;
-    border: 1px solid #fff;
-    padding: 50px 0 5px;
+    /* border: 1px solid #fff; */
+    border: 0;
   }
 
    /* 일요일에만 빨간 폰트 */
   & .react-calendar__month-view__weekdays__weekday--weekend abbr[title="일요일"] {
-    color: ${(props) => props.theme.red_1};
+    color:#DB4455;
+
   }
+  & .react-calendar__month-view__weekdays__weekday--weekend abbr[title="토요일"] {
+    color: #4491DB;
+  }
+
+  /* 달력안에 구름넣기 */
+  & .react-calendar__tile.react-calendar__month-view__days__day{
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+
+    color: ${props => props.isTask? props.theme.blue : props.theme.grey};
+  }
+  & .react-calendar__tile.react-calendar__tile--active abbr{
+    color: black;
+    text-decoration: underline;
+  }
+  
 `;
+
 
 const StyledDate = styled.div`
   position: absolute;
@@ -65,49 +88,49 @@ const StyledDate = styled.div`
   cursor: pointer;
 `;
 
-const DateView = styled.h2`
+const DateView = styled.div`
   font-family: 'RixInooAriDuriR';
-  width: 200px;
+  width: 100%;
   position: absolute;
   z-index: 10;
-  right: -25%;
-  bottom: 0;
-  text-align: center;
+  right: -28%;
+  bottom: 20%;
   padding: 0;
   margin: 0;
+  color: ${props => props.theme.blue};
+  font-size: 45px;
+  text-align: right;
+`;
 
-  display: flex;
-  flex-direction: column;
-
-  font-size: 42px;
+const TaskNum = styled.span`
+  position: absolute;
 `;
 
 
-function SchedulerItemList() {
+function SchedulerItemList({theme, today, date, setDate, todoList}) {
   const [value, onChange] = useState(new Date());
   
-
-  const today = new Date();
-  const [date, setDate] = useState(today);
-  const [activeStartDate, setActiveStartDate] = useState(
-    new Date()
-  );
-  const attendDay = ["2023-12-03", "2023-12-13"]; // 출석한 날짜 예시
-  
-    // const handleDateChange = (newDate: Value) => {
-    //   setDate(newDate);
-    // };
-  
-  
+  const [activeStartDate, setActiveStartDate] = useState(new Date());
   
   const handleTodayClick = () =>{
     const today = new Date();
     setActiveStartDate(today);
     setDate(today);
+
+    // today 버튼을 누르면 
+
+    // // 기존 클래스
+    // react-calendar__tile react-calendar__month-view__days__day
+
+    // // 클릭됐을때 클래스
+    // react-calendar__tile react-calendar__tile--active react-calendar__tile--range react-calendar__tile--rangeStart react-calendar__tile--rangeEnd react-calendar__tile--rangeBothEnds react-calendar__month-view__days__day
   };
+
+
+
   return (
     <Wrapper>
-      <StyledCalendar onChange={onChange} value={value}
+      <StyledCalendar onChange={onChange} value={value} theme={theme}
         formatDay={(locale, date) => moment(date).format("D")} // 일 제거 숫자만 보이게
         formatYear={(locale, date) => moment(date).format("YYYY")} // 네비게이션 눌렀을때 숫자 년도만 보이게
         formatMonthYear={(locale, date) => moment(date).format("YYYY. MM")} // 네비게이션에서 2023. 12 이렇게 보이도록 설정
@@ -123,14 +146,17 @@ function SchedulerItemList() {
         onActiveStartDateChange={({ activeStartDate }) =>
           setActiveStartDate(activeStartDate)
         }
-        onClickDay={(e)=>{console.log(e.valueOf().toLocaleString);}}
+        onClickDay={(e)=>{
+          setDate(e); 
+          // console.log(e);
+        }}
+          tileContent={()=>{ return <IoCloudy style={{fontSize:'60px'}}/>}}
         
-      />
+        
+      ><TbCloud /></StyledCalendar>
       <StyledDate onClick={handleTodayClick}>TODAY</StyledDate>
-      <DateView>
-        {`${date.getFullYear()}
-        ${date.getMonth()+1}
-        ${date.getDay()}`}
+      <DateView theme={theme}>
+        {moment(date).format("MM.DD.YYYY")}
       </DateView>
     </Wrapper>
   );

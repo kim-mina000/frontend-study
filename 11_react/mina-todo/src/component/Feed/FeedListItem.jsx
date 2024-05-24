@@ -8,8 +8,7 @@ const Wrapper = styled.div`
   width: 100%;
   height: 2rem;
   font-size: 20px;
-  background: #111;
-  color: #fff;
+  color: ${props => props.theme.blue};
   display: flex;
   /* justify-content: center; */
   align-items: center;
@@ -41,7 +40,7 @@ const EditInput = styled.input`
     width: 80%;
 `;
 
-function FeedListItem({todo:{id, text, date}, setTodoList, editTodo, handleDelete}) {
+function FeedListItem({todo:{id, text, date}, setTodoList, editTodo, handleDelete, theme}) {
   const mdCheckStyled = {
     padding: '5px 10px 5px',
   };
