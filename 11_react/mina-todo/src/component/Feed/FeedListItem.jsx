@@ -40,16 +40,13 @@ const EditInput = styled.input`
     width: 80%;
 `;
 
-function FeedListItem({todo:{id, text, date}, setTodoList, editTodo, handleDelete, theme}) {
+function FeedListItem({todo:{id, text, date, done},handleDone,todoList, setTodoList, editTodo, handleDelete, theme}) {
   const mdCheckStyled = {
     padding: '5px 10px 5px',
   };
   const iconStyled = {
     padding: '5px',
   };
-
-  // 완료된 일정 구현
-  const [done, setDone] = useState(false);
   
   // 수정하기 기능구현
   const [editBoolean, setEditBoolean] = useState(false);
@@ -60,7 +57,7 @@ function FeedListItem({todo:{id, text, date}, setTodoList, editTodo, handleDelet
 
   return (
     <Wrapper>
-      <CheckDone onClick={()=> setDone(!done)} done={done}>
+      <CheckDone onClick={()=>handleDone(id)} done={done}>
         { done ? <MdCheckBox style={mdCheckStyled} />  : <MdCheckBoxOutlineBlank style={mdCheckStyled}/>}
         { editBoolean ? 
         <EditInput type="text" value={text} onClick={(e)=>{e.preventDefault()}} onChange={(e)=>editTodo(e.target.value,id)} 
@@ -73,7 +70,7 @@ function FeedListItem({todo:{id, text, date}, setTodoList, editTodo, handleDelet
         :<TextTodo>{text}</TextTodo>}
       </CheckDone>
       <TbPencil style={iconStyled} onClick={()=>{setEditBoolean(!editBoolean)}} />
-      <LuDelete style={iconStyled} onClick={()=>{handleDelete(id)}} />
+      <LuDelete style={iconStyled} onClick={()=>{handleDelete(id,date)}} />
     </Wrapper>
   );
 };

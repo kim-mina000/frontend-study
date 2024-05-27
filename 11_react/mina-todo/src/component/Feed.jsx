@@ -48,7 +48,7 @@ const ButtonStyled = styled.button`
   }
 `;
 
-function Feed({theme,todoList,setTodoList, handleClick, inputValue ,setInputValue, date}) {
+function Feed({handleDone, theme,todoList,setTodoList, handleClick, inputValue ,setInputValue, date, setIsTaskDays, isTaskDays}) {
   // 질문1) 
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   // const inputRef = useRef('');
@@ -62,8 +62,11 @@ function Feed({theme,todoList,setTodoList, handleClick, inputValue ,setInputValu
     console.log(e.localStorage);  
   };
 
-  const handleRemove = (id)=>{
+  const handleRemove = (id,date)=>{
+    console.log(id);
+    console.log(date);
     setTodoList(todoList.filter(e => e.id !== id));
+    setIsTaskDays(isTaskDays.filter(e => e !== date));
   };
   return (
     <Wrapper>
@@ -81,7 +84,7 @@ function Feed({theme,todoList,setTodoList, handleClick, inputValue ,setInputValu
         />
         <ButtonStyled theme={theme} disabled={isButtonDisabled} onClick={()=>{handleClick()}}>추가</ButtonStyled>
       </InputArea>
-      <FeedList todoList={todoList} setTodoList={setTodoList} handleEdit={handleEdit} handleDelete={handleRemove} theme={theme} date={date} />
+      <FeedList todoList={todoList} setTodoList={setTodoList} handleEdit={handleEdit} handleDelete={handleRemove} theme={theme} date={date} handleDone={handleDone} />
     </Wrapper>
   );
 };

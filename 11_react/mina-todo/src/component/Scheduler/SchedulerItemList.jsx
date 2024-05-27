@@ -27,6 +27,7 @@ const StyledCalendar = styled(Calendar)`
   flex-direction: column;
   /* background: #999; */
   
+  
 
   & .react-calendar__navigation {
     padding-bottom: 20px;
@@ -39,7 +40,6 @@ const StyledCalendar = styled(Calendar)`
 
   & .react-calendar__month-view__days .react-calendar__tile.react-calendar__month-view__days__day {
     background: transparent;
-    /* border: 1px solid #fff; */
     border: 0;
   }
 
@@ -68,7 +68,34 @@ const StyledCalendar = styled(Calendar)`
     color: black;
     text-decoration: underline;
   }
-  
+  // 네비게이션 버튼 스타일
+  & .react-calendar__navigation__label{
+    border: 0px;
+    background: #fff;
+    font-size: 15px;
+    font-family: 'notosanskr';
+    
+  }
+  & .react-calendar__navigation__next-button, .react-calendar__navigation__prev-button{
+    border: 0px;
+    background: #fff;
+    font-size: 20px;
+    cursor: pointer;
+  }
+
+  & .react-calendar__tile.react-calendar__year-view__months__month{
+    font-family: 'notosanskr';
+    border: 0px;
+    padding: 10px;
+    border-radius: 2rem;
+    cursor: pointer;
+  }
+  & .react-calendar__tile.react-calendar__year-view__months__month>div>svg{
+    color: #fff;
+  }
+  & .react-calendar__tile.react-calendar__year-view__months__month:hover>div>svg{
+    color: ${props => props.theme.blue}
+  }
   `;
 const TodayUnderLine = styled.div`
   color: gray;
@@ -112,7 +139,9 @@ const TaskNum = styled.span`
   position: absolute;
 `;
 
-
+const Red =styled.div`
+  color:red;
+`;
 function SchedulerItemList({theme, today, date, setDate, todoList, isTaskDays}) {
   const [value, onChange] = useState(new Date());
   
@@ -132,6 +161,8 @@ function SchedulerItemList({theme, today, date, setDate, todoList, isTaskDays}) 
     // // 클릭됐을때 클래스
     // react-calendar__tile react-calendar__tile--active react-calendar__tile--range react-calendar__tile--rangeStart react-calendar__tile--rangeEnd react-calendar__tile--rangeBothEnds react-calendar__month-view__days__day
   };
+
+
 
 
 
@@ -155,7 +186,6 @@ function SchedulerItemList({theme, today, date, setDate, todoList, isTaskDays}) 
         }
         onClickDay={(e)=>{
           setDate(e); 
-          console.log(e.toISOString().substring(0,10)); // ★
         }}
         tileContent={(date, view)=>{ 
           let html = [];
@@ -166,7 +196,7 @@ function SchedulerItemList({theme, today, date, setDate, todoList, isTaskDays}) 
           } else {
             html.push(<IoCloudy style={{fontSize:'60px'}}/>);
           }
-          return <>{html}</>
+          return <div key={date}>{html}</div>
         }}
         
       ><TbCloud /></StyledCalendar>

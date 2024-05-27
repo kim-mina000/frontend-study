@@ -4,6 +4,7 @@ import Scheduler from "./Scheduler";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { useEffect } from "react";
+import moment from "moment";
 
 
 
@@ -38,7 +39,8 @@ let uuid = uuidv4().substring(1,8);
 
 function MainPage() {
   const [todoList, setTodoList] = useState([]);
-  const [isTaskDays, setIsTaskDays] = useState(["2024-05-27","2024-05-06"]); 
+  const [isTaskDays, setIsTaskDays] = useState([]); 
+  const [done, setDone] = useState(false);
 
   const today = new Date();
   const [date, setDate] = useState(today);
@@ -49,23 +51,33 @@ function MainPage() {
     // 만약 가져온 값이 null일때는 빈 배열을 넣어줌
     // todos가 없으면 null을 반환
     setTodoList(dbTodos);
+    const dbTasks =JSON.parse(localStorage.getItem('isTaskDays')) || [];
+    setIsTaskDays(dbTasks);
   },[])
 
   useEffect(() => {
     localStorage.setItem('todoList', JSON.stringify(todoList));
   },[todoList]);
 
+  useEffect(() => {
+    localStorage.setItem('isTaskDays', JSON.stringify(isTaskDays));
+  },[isTaskDays]);
 
   const [inputValue, setInputValue] = useState('');
 
 
   const handleClick = () =>{
     uuid = uuidv4().substring(1,8);
-    setTodoList([...todoList,{text:inputValue, id:uuid, date:date.toISOString().substring(0,10)}]);
-    setIsTaskDays([...isTaskDays,date.toISOString().substring(0,10)]); 
-    console.log(date.toISOString().substring(0,10));
+    setTodoList([...todoList,{text:inputValue, id:uuid, date:moment(date).format("YYYY-MM-DD"), done:false}]);
+    setIsTaskDays([...isTaskDays,moment(date).format("YYYY-MM-DD")]); 
     // 여기서부터 이어서하기! 할일이 있는 날을 useState로 따로 관리 
     setInputValue('');
+  }
+
+  // done 속성조절
+
+  const handleDone = (id) => {
+    setTodoList(todoList.map(todo=> todo.id === id ? {...todo, done: !todo.done } : todo))
   }
 
   return (
@@ -74,7 +86,7 @@ function MainPage() {
 
       </Scheduler>
       <Feed theme={theme} todoList={todoList} setTodoList={setTodoList} handleClick={handleClick} inputValue={inputValue} setInputValue={setInputValue}
-        date={date} setIsTaskDays={setIsTaskDays}
+        date={date} setIsTaskDays={setIsTaskDays} isTaskDays={isTaskDays} handleDone={handleDone}
       >
 
       </Feed>

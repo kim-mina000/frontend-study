@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import FeedListItem from "./FeedListItem";
 import moment from "moment";
+import { useState } from "react";
 
 
 
@@ -11,10 +12,12 @@ const Wrapper = styled.div`
 
 `;
 
-function FeedList({todoList, setTodoList, handleEdit, handleDelete, theme, date}) {
+function FeedList({todoList, setTodoList, handleEdit, handleDelete, theme, date, handleDone}) {
+
+
 
   const editTodo = (e, id)=>{
-    const copyTodo = {id:id, date:new Date().toISOString, text:e};
+    const copyTodo = {id:id, date:moment(new Date()).format("YYYY-MM-DD"), text:e, done:false};
     const copyTodoList = [...todoList];
     const index = copyTodoList.findIndex((todo)=>todo.id === copyTodo.id);
     copyTodoList[index] = copyTodo;
@@ -23,8 +26,9 @@ function FeedList({todoList, setTodoList, handleEdit, handleDelete, theme, date}
   return (
     <Wrapper>
       {todoList.map((todo)=>{ 
-        return todo.date === date.toISOString().substring(0,10) 
-        && <FeedListItem key={todo.id} todo={todo} setTodoList={setTodoList} handleEdit={handleEdit} handleDelete={handleDelete} editTodo={editTodo} theme={theme}/>
+        return todo.date === moment(date).format("YYYY-MM-DD") 
+        && <FeedListItem key={todo.id} theme={theme} todo={todo} todoList={todoList} setTodoList={setTodoList} 
+        handleEdit={handleEdit} handleDelete={handleDelete} editTodo={editTodo} handleDone={handleDone}/>
       })}
     </Wrapper>
   );
