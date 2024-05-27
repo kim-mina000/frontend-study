@@ -19,13 +19,13 @@ const Title = styled.h1`
 
 
 
-function Scheduler({theme, today, date, setDate, todoList}) {
+function Scheduler({theme, today, date, setDate, todoList, isTaskDays}) {
   return (
     <Wrapper>
       <Title>
       SCHEDULER
       </Title>
-      <SchedulerItemList theme={theme} today={today} date={date} setDate={setDate} todoList={todoList}>
+      <SchedulerItemList theme={theme} today={today} date={date} setDate={setDate} todoList={todoList} isTaskDays={isTaskDays}>
       </SchedulerItemList>
 
     </Wrapper>

@@ -61,12 +61,18 @@ const StyledCalendar = styled(Calendar)`
     padding: 0;
 
     color: ${props => props.isTask? props.theme.blue : props.theme.grey};
+    
   }
+
   & .react-calendar__tile.react-calendar__tile--active abbr{
     color: black;
     text-decoration: underline;
   }
   
+  `;
+const TodayUnderLine = styled.div`
+  color: gray;
+  text-decoration: underline;
 `;
 
 
@@ -107,7 +113,7 @@ const TaskNum = styled.span`
 `;
 
 
-function SchedulerItemList({theme, today, date, setDate, todoList}) {
+function SchedulerItemList({theme, today, date, setDate, todoList, isTaskDays}) {
   const [value, onChange] = useState(new Date());
   
   const [activeStartDate, setActiveStartDate] = useState(new Date());
@@ -122,6 +128,7 @@ function SchedulerItemList({theme, today, date, setDate, todoList}) {
     // // 기존 클래스
     // react-calendar__tile react-calendar__month-view__days__day
 
+
     // // 클릭됐을때 클래스
     // react-calendar__tile react-calendar__tile--active react-calendar__tile--range react-calendar__tile--rangeStart react-calendar__tile--rangeEnd react-calendar__tile--rangeBothEnds react-calendar__month-view__days__day
   };
@@ -134,7 +141,7 @@ function SchedulerItemList({theme, today, date, setDate, todoList}) {
         formatDay={(locale, date) => moment(date).format("D")} // 일 제거 숫자만 보이게
         formatYear={(locale, date) => moment(date).format("YYYY")} // 네비게이션 눌렀을때 숫자 년도만 보이게
         formatMonthYear={(locale, date) => moment(date).format("YYYY. MM")} // 네비게이션에서 2023. 12 이렇게 보이도록 설정
-        // calendarType="gregory" // 일요일 부터 시작
+        calendarType="gregory" // 일요일 부터 시작
         showNeighboringMonth={false} // 전달, 다음달 날짜 숨기기
         next2Label={null} // +1년 & +10년 이동 버튼 숨기기
         prev2Label={null} // -1년 & -10년 이동 버튼 숨기기
@@ -148,10 +155,19 @@ function SchedulerItemList({theme, today, date, setDate, todoList}) {
         }
         onClickDay={(e)=>{
           setDate(e); 
-          // console.log(e);
+          console.log(e.toISOString().substring(0,10)); // ★
         }}
-          tileContent={()=>{ return <IoCloudy style={{fontSize:'60px'}}/>}}
-        
+        tileContent={(date, view)=>{ 
+          let html = [];
+
+          if(isTaskDays.find((e)=> {
+            return e === moment(date.date).format("YYYY-MM-DD")})){
+            html.push(<IoCloudy style={{fontSize:'60px', color:'#93B5C6'}}/>);
+          } else {
+            html.push(<IoCloudy style={{fontSize:'60px'}}/>);
+          }
+          return <>{html}</>
+        }}
         
       ><TbCloud /></StyledCalendar>
       <StyledDate onClick={handleTodayClick}>TODAY</StyledDate>

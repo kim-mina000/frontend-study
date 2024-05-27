@@ -38,7 +38,7 @@ let uuid = uuidv4().substring(1,8);
 
 function MainPage() {
   const [todoList, setTodoList] = useState([]);
-  const [isTaskDays, setIsTaskDays] = useState([]); 
+  const [isTaskDays, setIsTaskDays] = useState(["2024-05-27","2024-05-06"]); 
 
   const today = new Date();
   const [date, setDate] = useState(today);
@@ -63,17 +63,18 @@ function MainPage() {
     uuid = uuidv4().substring(1,8);
     setTodoList([...todoList,{text:inputValue, id:uuid, date:date.toISOString().substring(0,10)}]);
     setIsTaskDays([...isTaskDays,date.toISOString().substring(0,10)]); 
+    console.log(date.toISOString().substring(0,10));
     // 여기서부터 이어서하기! 할일이 있는 날을 useState로 따로 관리 
     setInputValue('');
   }
 
   return (
     <Wrapper theme={theme}>
-      <Scheduler theme={theme} today={today} date={date} setDate={setDate} todoList={todoList}>
+      <Scheduler theme={theme} today={today} date={date} setDate={setDate} todoList={todoList} isTaskDays={isTaskDays}>  
 
       </Scheduler>
       <Feed theme={theme} todoList={todoList} setTodoList={setTodoList} handleClick={handleClick} inputValue={inputValue} setInputValue={setInputValue}
-        date={date}
+        date={date} setIsTaskDays={setIsTaskDays}
       >
 
       </Feed>
