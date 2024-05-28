@@ -96,11 +96,16 @@ const StyledCalendar = styled(Calendar)`
   & .react-calendar__tile.react-calendar__year-view__months__month:hover>div>svg{
     color: ${props => props.theme.blue}
   }
+
+  & abbr {
+    text-decoration: none;
+  }
+
+  // 구름안에 남은 태스크 갯수 넣기
+  & .react-calendar__tile>div{
+    position: relative;
+  }
   `;
-const TodayUnderLine = styled.div`
-  color: gray;
-  text-decoration: underline;
-`;
 
 
 const StyledDate = styled.div`
@@ -135,13 +140,21 @@ const DateView = styled.div`
   text-align: right;
 `;
 
+  // 구름안에 남은 태스크 갯수 넣기
 const TaskNum = styled.span`
   position: absolute;
+  color: red;
+  right: 42%;
+  top: 42%;
+  font-family: 'RixInooAriDuriR';
+  color: #fff;
+  text-align: center;
 `;
 
 const Red =styled.div`
   color:red;
 `;
+
 function SchedulerItemList({theme, today, date, setDate, todoList, isTaskDays}) {
   const [value, onChange] = useState(new Date());
   
@@ -162,11 +175,20 @@ function SchedulerItemList({theme, today, date, setDate, todoList, isTaskDays}) 
     // react-calendar__tile react-calendar__tile--active react-calendar__tile--range react-calendar__tile--rangeStart react-calendar__tile--rangeEnd react-calendar__tile--rangeBothEnds react-calendar__month-view__days__day
   };
 
-
-
+  // 테스크 몇개 넣었는지 숫자
+  const howManyTask = (date) =>{
+    let num = 0;
+    for(let i = 0; i < Object(isTaskDays).length; i++){
+      if(isTaskDays[i] === moment(date).format("YYYY-MM-DD")){
+        num++;
+      }
+    }
+    return num;
+  }
 
 
   return (
+
     <Wrapper>
       <StyledCalendar onChange={onChange} value={value} theme={theme}
         formatDay={(locale, date) => moment(date).format("D")} // 일 제거 숫자만 보이게
@@ -192,7 +214,7 @@ function SchedulerItemList({theme, today, date, setDate, todoList, isTaskDays}) 
 
           if(isTaskDays.find((e)=> {
             return e === moment(date.date).format("YYYY-MM-DD")})){
-            html.push(<IoCloudy style={{fontSize:'60px', color:'#93B5C6'}}/>);
+            html.push(<IoCloudy style={{fontSize:'60px', color:'#93B5C6'}}/>,<TaskNum>{howManyTask(date.date)}</TaskNum>);
           } else {
             html.push(<IoCloudy style={{fontSize:'60px'}}/>);
           }
@@ -202,6 +224,7 @@ function SchedulerItemList({theme, today, date, setDate, todoList, isTaskDays}) 
       ><TbCloud /></StyledCalendar>
       <StyledDate onClick={handleTodayClick}>TODAY</StyledDate>
       <DateView theme={theme}>
+        { moment(today).format("YYYY-MM-DD") === moment(date).format("YYYY-MM-DD") && "TODAY"}<br/>
         {moment(date).format("MM.DD.YYYY")}
       </DateView>
     </Wrapper>

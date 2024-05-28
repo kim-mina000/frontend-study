@@ -37,7 +37,7 @@ const Wrapper = styled.div`
 
 let uuid = uuidv4().substring(1,8);
 
-function MainPage() {
+function MainPage({name}) {
   const [todoList, setTodoList] = useState([]);
   const [isTaskDays, setIsTaskDays] = useState([]); 
   const [done, setDone] = useState(false);
@@ -63,6 +63,8 @@ function MainPage() {
     localStorage.setItem('isTaskDays', JSON.stringify(isTaskDays));
   },[isTaskDays]);
 
+
+
   const [inputValue, setInputValue] = useState('');
 
 
@@ -82,14 +84,11 @@ function MainPage() {
 
   return (
     <Wrapper theme={theme}>
-      <Scheduler theme={theme} today={today} date={date} setDate={setDate} todoList={todoList} isTaskDays={isTaskDays}>  
-
-      </Scheduler>
+      <Scheduler theme={theme} today={today} date={date} setDate={setDate} todoList={todoList} isTaskDays={isTaskDays} />  
       <Feed theme={theme} todoList={todoList} setTodoList={setTodoList} handleClick={handleClick} inputValue={inputValue} setInputValue={setInputValue}
         date={date} setIsTaskDays={setIsTaskDays} isTaskDays={isTaskDays} handleDone={handleDone}
-      >
+      />
 
-      </Feed>
     </Wrapper>
   );
 };

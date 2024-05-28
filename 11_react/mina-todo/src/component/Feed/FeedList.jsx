@@ -16,8 +16,8 @@ function FeedList({todoList, setTodoList, handleEdit, handleDelete, theme, date,
 
 
 
-  const editTodo = (e, id)=>{
-    const copyTodo = {id:id, date:moment(new Date()).format("YYYY-MM-DD"), text:e, done:false};
+  const editTodo = (e, id, copyDate, done)=>{
+    const copyTodo = {text:e, id:id, date:copyDate ,done:done};
     const copyTodoList = [...todoList];
     const index = copyTodoList.findIndex((todo)=>todo.id === copyTodo.id);
     copyTodoList[index] = copyTodo;

@@ -51,7 +51,7 @@ function FeedListItem({todo:{id, text, date, done},handleDone,todoList, setTodoL
   // 수정하기 기능구현
   const [editBoolean, setEditBoolean] = useState(false);
   // const [editValue, setEditValue] = useState(text);
-  
+  const copyDate = date;
 
 
 
@@ -60,10 +60,10 @@ function FeedListItem({todo:{id, text, date, done},handleDone,todoList, setTodoL
       <CheckDone onClick={()=>handleDone(id)} done={done}>
         { done ? <MdCheckBox style={mdCheckStyled} />  : <MdCheckBoxOutlineBlank style={mdCheckStyled}/>}
         { editBoolean ? 
-        <EditInput type="text" value={text} onClick={(e)=>{e.preventDefault()}} onChange={(e)=>editTodo(e.target.value,id)} 
+        <EditInput type="text" value={text} onClick={(e)=>{e.preventDefault()}} onChange={(e)=>editTodo(e.target.value,id,copyDate,done)} 
         onKeyDown={(e)=>{
           if (e.key === 'Enter') {
-            editTodo(text,id);
+            editTodo(text,id,copyDate,done);
             setEditBoolean(!editBoolean);
           }
         }} />

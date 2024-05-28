@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import SchedulerItemList from "./Scheduler/SchedulerItemList";
+import { useNavigate } from "react-router-dom";
 
 const Wrapper = styled.div`
   width: 80%;
@@ -19,11 +20,14 @@ const Title = styled.h1`
 
 
 
-function Scheduler({theme, today, date, setDate, todoList, isTaskDays, name}) {
+function Scheduler({theme, today, date, setDate, todoList, isTaskDays}) {
+
+  const name = localStorage.getItem('name');
+  const nevigate = useNavigate();
   return (
     <Wrapper>
       <Title>
-      SCHEDULER For {name}
+      SCHEDULER For <span style={{cursor:'pointer'}} onClick={() => nevigate('/')} title="Change your name!">{name}</span>
       </Title>
       <SchedulerItemList theme={theme} today={today} date={date} setDate={setDate} todoList={todoList} isTaskDays={isTaskDays}>
       </SchedulerItemList>
