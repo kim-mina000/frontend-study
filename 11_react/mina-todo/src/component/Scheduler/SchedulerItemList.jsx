@@ -130,7 +130,7 @@ const DateView = styled.div`
   font-family: 'RixInooAriDuriR';
   width: 100%;
   position: absolute;
-  z-index: 10;
+  z-index: -1;
   right: -28%;
   bottom: 20%;
   padding: 0;
@@ -144,16 +144,13 @@ const DateView = styled.div`
 const TaskNum = styled.span`
   position: absolute;
   color: red;
-  right: 42%;
+  right: 40%;
   top: 42%;
   font-family: 'RixInooAriDuriR';
   color: #fff;
   text-align: center;
 `;
 
-const Red =styled.div`
-  color:red;
-`;
 
 function SchedulerItemList({theme, today, date, setDate, todoList, isTaskDays}) {
   const [value, onChange] = useState(new Date());
@@ -212,13 +209,13 @@ function SchedulerItemList({theme, today, date, setDate, todoList, isTaskDays}) 
         tileContent={(date, view)=>{ 
           let html = [];
 
-          if(isTaskDays.find((e)=> {
+          if(isTaskDays.find( e => {
             return e === moment(date.date).format("YYYY-MM-DD")})){
             html.push(<IoCloudy style={{fontSize:'60px', color:'#93B5C6'}}/>,<TaskNum>{howManyTask(date.date)}</TaskNum>);
           } else {
             html.push(<IoCloudy style={{fontSize:'60px'}}/>);
           }
-          return <div key={date}>{html}</div>
+          return <div style={{cursor:'pointer'}}>{html}</div>
         }}
         
       ><TbCloud /></StyledCalendar>

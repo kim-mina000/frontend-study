@@ -2,12 +2,12 @@ import styled, {css} from "styled-components";
 import { MdCheckBoxOutlineBlank, MdCheckBox, MdDelete } from "react-icons/md";
 import { LuDelete } from "react-icons/lu";
 import { TbPencil } from "react-icons/tb";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const Wrapper = styled.div`
   width: 100%;
-  height: 2rem;
-  font-size: 20px;
+  height: 3rem;
+  font-size: 23px;
   color: ${props => props.theme.blue};
   display: flex;
   /* justify-content: center; */
@@ -20,8 +20,15 @@ const Wrapper = styled.div`
 `;
 
 const CheckDone =styled.div`
-  width: 80%;
+  width: 10%;
   display: flex;
+  `;
+
+const InputArea =styled.div`
+  flex:1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   ${ props => props.done &&
   css`
     text-decoration: line-through;
@@ -30,20 +37,17 @@ const CheckDone =styled.div`
 `;
 
 const TextTodo = styled.span`
-  /* width: 170px; */
+  width: 190px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 `;
 
 const EditInput = styled.input`
-    width: 80%;
+    width: 90%;
 `;
 
 function FeedListItem({todo:{id, text, date, done},handleDone,todoList, setTodoList, editTodo, handleDelete, theme}) {
-  const mdCheckStyled = {
-    padding: '5px 10px 5px',
-  };
   const iconStyled = {
     padding: '5px',
   };
@@ -54,21 +58,32 @@ function FeedListItem({todo:{id, text, date, done},handleDone,todoList, setTodoL
   const copyDate = date;
 
 
+  const inputRef = useRef(null);
+  
+  useEffect(() => {
+    if (editBoolean) {
+      inputRef.current.focus();
+    }
+  }, [editBoolean]);
 
   return (
     <Wrapper>
-      <CheckDone onClick={()=>handleDone(id)} done={done}>
-        { done ? <MdCheckBox style={mdCheckStyled} />  : <MdCheckBoxOutlineBlank style={mdCheckStyled}/>}
+      <CheckDone>
+        { done ? <MdCheckBox onClick={()=>handleDone(id)} done={done} />  
+        : <MdCheckBoxOutlineBlank onClick={()=>handleDone(id)} done={done}/>}
+      </CheckDone>
+      <InputArea  onClick={()=>{setEditBoolean(!editBoolean);}} done={done}>
         { editBoolean ? 
-        <EditInput type="text" value={text} onClick={(e)=>{e.preventDefault()}} onChange={(e)=>editTodo(e.target.value,id,copyDate,done)} 
+        <EditInput ref={inputRef} type="text" value={text} onChange={(e)=>editTodo(e.target.value,id,copyDate,done)} 
         onKeyDown={(e)=>{
           if (e.key === 'Enter') {
             editTodo(text,id,copyDate,done);
             setEditBoolean(!editBoolean);
           }
-        }} />
+        }}
+        />
         :<TextTodo>{text}</TextTodo>}
-      </CheckDone>
+      </InputArea>
       <TbPencil style={iconStyled} onClick={()=>{setEditBoolean(!editBoolean)}} />
       <LuDelete style={iconStyled} onClick={()=>{handleDelete(id,date)}} />
     </Wrapper>

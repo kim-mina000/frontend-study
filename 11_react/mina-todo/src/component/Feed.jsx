@@ -61,12 +61,16 @@ function Feed({handleDone, theme,todoList,setTodoList, handleClick, inputValue ,
   const handleEdit = (e) =>{
     console.log(e.localStorage);  
   };
+
+
   // console.log(Object(isTaskDays).length);
 
   const handleRemove = (id,date)=>{
     setTodoList(todoList.filter(e => e.id !== id));
-    // 이거 오류수정하기~ isTaskDays에서 날짜가 하나씩 빠져야하는데 한번에 빠짐(filter) 다른 방향으로 생각해보기!
-    setIsTaskDays();
+    // 여기 다시 수정하기~~~ 한번에 사라지던데;;
+    const index = isTaskDays.findIndex(e => e === date);
+    console.log(date);
+    setIsTaskDays(isTaskDays.splice(index,1));
   };
   return (
     <Wrapper>
