@@ -78,7 +78,8 @@ function MainPage({name}) {
   // done 속성조절
 
   const handleDone = (id) => {
-    setTodoList(todoList.map(todo=> todo.id === id ? {...todo, done: !todo.done } : todo))
+    setTodoList(todoList.map(todo=> todo.id === id ? {...todo, done: !todo.done } : todo));
+    
   }
 
   return (
