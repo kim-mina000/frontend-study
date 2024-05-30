@@ -49,11 +49,10 @@ const ButtonStyled = styled.button`
 `;
 
 function Feed({handleDone, theme,todoList,setTodoList, handleClick, inputValue ,setInputValue, date, setIsTaskDays, isTaskDays}) {
-  // 질문1) 
+
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
-  // const inputRef = useRef('');
+
   const handleInput = (e)=>{
-    // inputRef.current = e.target.value;
     setInputValue(e.target.value);
     setIsButtonDisabled(e.target.value === '');
   };
@@ -62,15 +61,17 @@ function Feed({handleDone, theme,todoList,setTodoList, handleClick, inputValue ,
     console.log(e.localStorage);  
   };
 
-
-  // console.log(Object(isTaskDays).length);
+  // splice 기능 개못해서 함수 만드러쒀요 ,,,,, 왜??? 날 괴롭게해???
+  const arrReturn= (arr,index) =>{
+    const copy1 = arr.slice(0,index);
+    const copy2 = arr.slice(index+1, arr.length);
+    return copy1.concat(copy2);
+  }
+  
 
   const handleRemove = (id,date)=>{
     setTodoList(todoList.filter(e => e.id !== id));
-    // 여기 다시 수정하기~~~ 한번에 사라지던데;;
-    const index = isTaskDays.findIndex(e => e === date);
-    console.log(date);
-    setIsTaskDays(isTaskDays.splice(index,1));
+    setIsTaskDays(arrReturn(isTaskDays, isTaskDays.indexOf(date)));
   };
   return (
     <Wrapper>
@@ -78,7 +79,6 @@ function Feed({handleDone, theme,todoList,setTodoList, handleClick, inputValue ,
       <InputArea>
         <InputStyled theme={theme} value={inputValue} placeholder="할일 추가하기"
           type="text"
-          // ref={inputRef}
           onChange={handleInput}
           onKeyDown={(e)=>{
             if (e.key === 'Enter' && isButtonDisabled === false) {

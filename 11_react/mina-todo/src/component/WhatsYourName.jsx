@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { IoCloudy } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
@@ -76,6 +76,10 @@ to { transform: translateX(100%);}
 
 function WhatsYourName({name, setName}) {
 
+  const inputFocus = useRef(null);
+  useEffect(() => {
+    inputFocus.current.focus();
+  }, []);
 
   // 참고해서 완성하기~
   // https://chaewonkong.github.io/posts/auto-width-text-input.html
@@ -106,7 +110,7 @@ function WhatsYourName({name, setName}) {
         </CloudAnimation>
       </IoCloudyDiv>
       <p style={{ fontFamily: 'notosanskr'}}>Please Enter your name</p>
-      <InputName onChange={(e)=> setName(e)} value={name} placeholder="이름을 넣어주세요!"
+      <InputName ref={inputFocus} onChange={(e)=> setName(e)} value={name} placeholder="이름을 넣어주세요!"
         spellCheck={ false }
         contentEditable = {editable}
         onInput={handleInputEvent}
