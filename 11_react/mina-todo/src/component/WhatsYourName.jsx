@@ -115,6 +115,11 @@ function WhatsYourName({name, setName}) {
         contentEditable = {editable}
         onInput={handleInputEvent}
         onClick={()=>{setEditable(true)}}
+        onKeyDown={(e)=>{
+          if (e.key === 'Enter'){
+            nevigate('/scheduler');
+          }
+        }}
         />
       <InputButton onClick={()=>nevigate('/scheduler')}>Enter</InputButton>
     </Wrapper>
