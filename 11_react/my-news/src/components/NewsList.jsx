@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
+import { Oval } from "react-loader-spinner";
 
 import NewsItem from "./NewsItem";
 
@@ -68,7 +69,13 @@ function NewsList() {
   // 로딩중일때 처리
   // 추천? react-spinners 또는 Lottie File 사용 <- 로딩화면 만들어주는 라이브러리
   if (loading){
-    return <NewsListBlock>로딩 중 . . .</NewsListBlock>
+    return <NewsListBlock>
+      <Oval 
+        color="#fff" 
+        height={100} 
+        width={100}
+      />
+      </NewsListBlock>
   }
 
   return (
