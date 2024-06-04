@@ -5,6 +5,7 @@ import axios from "axios";
 import { Oval } from "react-loader-spinner";
 
 import NewsItem from "./NewsItem";
+import { useParams } from "react-router-dom";
 
 const NewsListBlock = styled.div`
   box-sizing: border-box;
@@ -33,6 +34,9 @@ function NewsList() {
   const [articles, setArticles] = useState(null);
   const [loading, setLoading] = useState(false); // 로딩을 상태로 관리하여 API요청이 대기중인지 판별
 
+  const {category = 'all'} = useParams();
+  console.log(category);
+
   // NewsList가 화면에 보이는 시점에 API를 요청
   // => useEffect()를 사용하여 컴포넌트가 처음 렌더링 됐을 때 한번만 요청
   // useEffect() 안썼을 때 문제점? api + 요청 set함수에 의한 재렌더링 무한 반복
@@ -40,7 +44,14 @@ function NewsList() {
     (async () => {
       setLoading(true);
     try {
-        const response = await axios.get('https://newsapi.org/v2/top-headlines?country=kr&apiKey=8c9b65ee2f574db0b96a13d10a05c811');
+      // API 호출 시 카테고리 지정하기
+      // 카테고리가 all 일때는 아무것도 들어가면 안되고, 그 외엔 해당 카테고리 값이 들어감
+      // 예시:
+      // https://newsapi.org/v2/top-headlines?country=kr&apiKey=8c9b65ee2f574db0b96a13d10a05c811
+      // https://newsapi.org/v2/top-headlines?country=kr&★category=health★&apiKey=8c9b65ee2f574db0b96a13d10a05c811
+
+        const query = category === 'all'? '' : `&category=${category}`
+        const response = await axios.get(`https://newsapi.org/v2/top-headlines?country=kr${query}&apiKey=8c9b65ee2f574db0b96a13d10a05c811`);
         console.log(response.data.articles);
         setArticles(response.data.articles);
       } catch (error) {
@@ -58,7 +69,7 @@ function NewsList() {
     //   setArticles(result);
     // };
     // fetchNewsData();
-  }, []);
+  }, [category]);
 
   // article 값이 없을 때 렌더링 막기
   // 방법 1.
@@ -77,6 +88,7 @@ function NewsList() {
       />
       </NewsListBlock>
   }
+
 
   return (
     <NewsListBlock>
