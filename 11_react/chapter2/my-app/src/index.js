@@ -53,7 +53,8 @@ import EffectContainer from './Chapter7/7.3/ex3/EffectContainer';
 import SimpleRouter from './chapter16/SimpleRouter';
 import ApiRequest from './chapter17/ApiRequest';
 import ReduxTextApp from './Chapter18/ReduxTextApp';
-import { store } from './Chapter18/app/store';
+import { productStore, store } from './Chapter18/app/store';
+import ProductList from './Chapter18/features/product/ProductList';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 // Root DOM Node에 리액트 컴포넌트를 렌더링 하도록 하는 함수(React 엘리먼트를 DOM 엘리먼트로 렌더링하는 역할)
@@ -148,8 +149,11 @@ root.render(
     // 2. 리액트에 Redux Store 제공하기 (index.js) Provider를 통해
     // ReduxTextApp 컴포넌트와 그 하위 자식들은 Redux Store에 접근 가능
     // 저장된 state들을 마음대로 꺼내 쓸 수 있음
+    // <Provider store={store}>
+    //     <ReduxTextApp />
+    // </Provider>
     <Provider store={store}>
-        <ReduxTextApp />
+        <ProductList />
     </Provider>
 
 );
