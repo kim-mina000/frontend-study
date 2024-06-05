@@ -3,15 +3,22 @@
 npm install @reduxjs/toolkit react-redux
 
 1. Redux Store 만들기 (app/store.js)
+=> configureStore를 사용해서 reducer를 등록해주기
 
 2. 리액트에 Redux Store 제공하기 (index.js)
+=> <Provider store={store}>
+안에있는 컴포넌트들은 store에 마음껏 접근 가능
+</Provider>
 
 3. Redux State Slice 만들기 ★핵심!(features/counter/counterSlice.js)
+=> createSlice 함수 이용 createSlice는 객체를 갖는데 name / initialState / reducer 은 고정필수값
 
 4. Redux Store에 Slice Reducers 추가하기 (app/store.js)
+=> reducer 아래에 추가 이때 import 받아줘야함
+
 
 5. 리액트 컴포넌트에서 Redux State와 Actions 사용하기 (features/counter/Counter.js)
-
+=>useDispatch() / useSelector() 사용
 
 ## <연습>
 1. ProductList 컴포넌트

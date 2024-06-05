@@ -16,6 +16,7 @@ const productSlice = createSlice({
     },
   }
 });
+console.log(productSlice);
 
 export const {addToProductList} = productSlice.actions;
 export const selectProductList = state => {

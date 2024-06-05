@@ -149,11 +149,8 @@ root.render(
     // 2. 리액트에 Redux Store 제공하기 (index.js) Provider를 통해
     // ReduxTextApp 컴포넌트와 그 하위 자식들은 Redux Store에 접근 가능
     // 저장된 state들을 마음대로 꺼내 쓸 수 있음
-    // <Provider store={store}>
-    //     <ReduxTextApp />
-    // </Provider>
     <Provider store={store}>
-        <ProductList />
+        <ReduxTextApp />
     </Provider>
 
 );
