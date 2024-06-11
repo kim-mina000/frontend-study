@@ -1,5 +1,5 @@
 import styled, {css} from "styled-components";
-import { MdCheckBoxOutlineBlank, MdCheckBox, MdDelete } from "react-icons/md";
+import { MdCheckBoxOutlineBlank, MdCheckBox } from "react-icons/md";
 import { LuDelete } from "react-icons/lu";
 import { TbPencil } from "react-icons/tb";
 import { useEffect, useRef, useState } from "react";
@@ -10,7 +10,6 @@ const Wrapper = styled.div`
   font-size: 23px;
   color: ${props => props.theme.blue};
   display: flex;
-  /* justify-content: center; */
   align-items: center;
   cursor: pointer;
 

@@ -1,8 +1,9 @@
 import {createGlobalStyle} from 'styled-components';
 import Layout from './pages/Layout';
-import {Routes,Route} from 'react-router-dom';
+import {Routes,Route, useParams} from 'react-router-dom';
 import Cart from './pages/Cart';
 import Main from './pages/Main';
+import ProductDetail from './pages/ProductDetail';
 
 // 글로벌(공통) 스타일 설정
 const GlobalStyle = createGlobalStyle`
@@ -25,6 +26,8 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 function App() {
+
+
   return (
     <>
       <GlobalStyle />
@@ -44,6 +47,12 @@ function App() {
           {/* path는 그 주소로 접근해야 보여짐 */}
           {/* <Route index element={<Cart />} /> */}
           <Route index element={<Main />} />
+          {/* <Route path='detail' element={<ProductDetail />}/> */}
+          {/* Quiz: 상품별 상세페이지 여러 개를 라우팅 하려면? URL 파라미터 사용
+            예: /detail/1로 접속하면 productId에 1이 담기도록 설정
+          */}
+          <Route path='/detail/:id' element={<ProductDetail />}/>
+
         </Route>
     	</Routes>
   </>

@@ -1,29 +1,37 @@
-// 리액트(JS)에서 이미지 파일 가져오기
-// 1) src 폴더 안 이미지(상대경로로 import해서 사용)
-import siri from "../images/siri.jpg";
 import { useEffect } from "react";
 import styled from "styled-components";
 import { Col, Container, Row } from "react-bootstrap";
 import axios from "axios";
-import productSlice, { getAllProducts, selectProductList } from "../features/product/productSlice";
 import { useDispatch, useSelector } from "react-redux";
+
+import productSlice, { getAllProducts, selectProductList } from "../features/product/productSlice";
+import ProductListItem from "../components/ProductListItem";
+// 리액트(JS)에서 이미지 파일 가져오기
+// 1) src 폴더 안 이미지(상대경로로 import해서 사용)
+import siri from "../images/siri.jpg";
+// 2) public 폴더 안 이미지 (root 경로로 바로 접근)
+// 빌드 시 src 폴더 안에 있는 코드와 파일은 압축이 되지만 public 폴더에 있는 것들은 그대로 보존
+// 이미지 같은 수정이 필요 없는 static 파일의 경우 public에 보관하기도 함
 
 const MainBackground = styled.div`
   height: 500px;
-  background-image: url(${siri});
+  /* background-image: url(${siri}); */ // 1번 방법
+  background-image: url("/images/siri.jpg"); // 2번 방법
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
 `;
 function Main() {
+  const dispatch = useDispatch();
+  // const list = useSelector(state => state.product.productList);
+  const productList = useSelector(selectProductList);
+
   // 처음 마운트 됐을 때 서버에 상품 목록 데이터를 요청하고
   // 그 결과를 리덕스 스토어에 전역 상태로 저장
-  const dispatch = useDispatch();
   useEffect(() => {
     // 서버에 상품 목록 요청
-    const data = axios.get("https://my-json-server.typicode.com/kim-mina000/MyJsonServer-shop/products")
+    axios.get("https://my-json-server.typicode.com/kim-mina000/MyJsonServer-shop/products")
     .then(response => {
-      console.log(response.data);
       dispatch(getAllProducts(response.data));
     })
     .catch((err)=>{
@@ -34,8 +42,6 @@ function Main() {
       // ex) 타이머기능 정리 등
     }, []);
     
-    const list = useSelector(state => state.product.productList);
-    console.log(list);
     return (
     <>
     {/* 메인 이미지 섹션 */}
@@ -49,34 +55,15 @@ function Main() {
             {/* 부트스트랩 이용한 반응형 작업 */}
             {/* md >= 768px 이상에서 전체 12등분 중 4:4:4로 보여줌 그 이하에서는 하나씩 나옴 */}
             {/* Container - Row - Col 안에서 만 사용가능 */}
-            {/* <Col md={4} sm={6}>
-            <img src="https://www.yonexmall.com/shop/data/goods/1645767865278s0.png" width="80%" />
-              <h4>상품명</h4>
-              <p>상품가격</p>
-            </Col>
-            <Col md={4} sm={6}>
-            <img src="https://www.yonexmall.com/shop/data/goods/1659329583483s0.png" width="80%" />
-              <h4>상품명</h4>
-              <p>상품가격</p>
-            </Col>
-            <Col md={4} sm={6}>
-            <img src="https://www.yonexmall.com/shop/data/goods/1667190100104s0.png" width="80%" />
-              <h4>상품명</h4>
-              <p>상품가격</p>
-            </Col> */}
             {/* map함수로 돌리기 */}
-            {console.log(list)}
-            {list.map((product)=>{
-
-              return <Col md={4} sm={6} key={product.id}>
-                <img src={product.imagePath} width={"80%"} />
-                <h4>{product.title}</h4>
-                <p>{product.price}</p>
-              </Col>
+            {/* ProductListItem 컴포넌트 만들어서 반복 렌더링을 바꾸고 데이터 바인딩 */}
+            {productList.map((product)=>{
+              return <ProductListItem key={product.id} product={product}/>
             })}
           </Row>
         </Container>
       </section>
+      
     </>
   );
 };

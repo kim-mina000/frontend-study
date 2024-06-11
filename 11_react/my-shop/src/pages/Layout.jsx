@@ -1,7 +1,8 @@
 import { Container, Nav, Navbar } from "react-bootstrap";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 
 function Layout() {
+  const navigator = useNavigate();
   return (
     <>
       {/* 헤더 */}
@@ -9,10 +10,10 @@ function Layout() {
       <header>
         <Navbar bg="dark" data-bs-theme="dark">
           <Container>
-            <Navbar.Brand href="#home">⸝₍̗⁽ˆ⁰ˆ⁾₎͕⸍∘˚˳°✧𝐦𝐢𝐧𝐚 𝐬𝐡𝐨𝐩</Navbar.Brand>
+            <Navbar.Brand href="#home" onClick={()=>{navigator('/')}}>⸝₍̗⁽ˆ⁰ˆ⁾₎͕⸍∘˚˳°✧𝐦𝐢𝐧𝐚 𝐬𝐡𝐨𝐩</Navbar.Brand>
             <Nav className="me-auto">
-              <Nav.Link >𝐡𝐨𝐦𝐞</Nav.Link>
-              <Nav.Link >𝐜𝐚𝐫𝐭</Nav.Link>
+              <Nav.Link onClick={()=>navigator('/')}>𝐡𝐨𝐦𝐞</Nav.Link>
+              <Nav.Link onClick={()=>navigator('/cart')}>𝐜𝐚𝐫𝐭</Nav.Link>
             </Nav>
           </Container>
         </Navbar>

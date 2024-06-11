@@ -156,6 +156,8 @@ function SchedulerItemList({theme, today, date, setDate, todoList, isTaskDays}) 
   const [value, onChange] = useState(new Date());
   
   const [activeStartDate, setActiveStartDate] = useState(new Date());
+
+  const [clickClass, setClickClass] = useState('');
   
   const handleTodayClick = () =>{
     const today = new Date();
@@ -164,12 +166,19 @@ function SchedulerItemList({theme, today, date, setDate, todoList, isTaskDays}) 
 
     // today 버튼을 누르면 
 
-    // // 기존 클래스
-    // react-calendar__tile react-calendar__month-view__days__day
+    // 기존 클래스
+    // react-calendar__tile
+    // react-calendar__month-view__days__day
+    
 
-
-    // // 클릭됐을때 클래스
-    // react-calendar__tile react-calendar__tile--active react-calendar__tile--range react-calendar__tile--rangeStart react-calendar__tile--rangeEnd react-calendar__tile--rangeBothEnds react-calendar__month-view__days__day
+    // 클릭됐을때 클래스
+    // react-calendar__tile 
+    // react-calendar__tile--active 
+    // react-calendar__tile--range 
+    // react-calendar__tile--rangeStart 
+    // react-calendar__tile--rangeEnd 
+    // react-calendar__tile--rangeBothEnds 
+    // react-calendar__month-view__days__day
   };
 
   // 테스크 몇개 넣었는지 숫자
@@ -208,20 +217,20 @@ function SchedulerItemList({theme, today, date, setDate, todoList, isTaskDays}) 
         }}
         tileContent={(date, view)=>{ 
           let html = [];
-
+      
           if(isTaskDays.find( e => {
             return e === moment(date.date).format("YYYY-MM-DD")})){
-            html.push(<IoCloudy style={{fontSize:'60px', color:'#93B5C6'}}/>,<TaskNum>{howManyTask(date.date)}</TaskNum>);
+            html.push(<IoCloudy key={date.date} style={{fontSize:'60px', color:'#93B5C6'}}/>,<TaskNum>{howManyTask(date.date)}</TaskNum>);
           } else {
-            html.push(<IoCloudy style={{fontSize:'60px'}}/>);
+            html.push(<IoCloudy key={date.date} style={{fontSize:'60px'}}/>);
           }
-          return <div style={{cursor:'pointer'}}>{html}</div>
+          return <div key={date.date} style={{cursor:'pointer'}}>{html}</div>
         }}
         
       ><TbCloud /></StyledCalendar>
       <StyledDate onClick={handleTodayClick}>TODAY</StyledDate>
       <DateView theme={theme}>
-        { moment(today).format("YYYY-MM-DD") === moment(date).format("YYYY-MM-DD") && "TODAY"}<br/>
+        {moment(today).format("YYYY-MM-DD") === moment(date).format("YYYY-MM-DD") && "TODAY"}<br/>
         {moment(date).format("MM.DD.YYYY")}
       </DateView>
     </Wrapper>
