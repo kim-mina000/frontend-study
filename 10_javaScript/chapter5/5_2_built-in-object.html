@@ -414,6 +414,601 @@
     index = fruits.includes('Banana', 3); // 검색 시작 위치 지정
     console.log(index); // false
 
+    
+    // 3. Math 객체
+    // 수학적인 상수와 내장 함수를 가진 객체로 수학 관련 속성과 함수를 제공
+    // 다른 객체와 달리 Math 생성자가 아님. 즉, 객체 생성을 하지 않고 사용 가능 => 정적(static)
+    // Math.속성명;
+    // Math.함수명();
+    document.write('<h1>Math 객체</h1>');
+
+    // 속성
+    document.write('<h4>원주율 PI</h4>');
+    document.write(Math.PI, '<br>');
+
+    // 1) Math.round()
+    // 숫자에 대한 반올림 처리(소수점 첫째 자리 반올림)
+    document.write('<h4>round</h4>');
+    document.write(Math.round(4.9), '<br>');
+    document.write(Math.round(4.7), '<br>');
+    document.write(Math.round(4.4), '<br>');
+    document.write(Math.round(4.2), '<br>');
+    document.write(Math.round(-4.2), '<br>');
+    
+    // 2) Math.ceil()
+    // 숫자에 대한 무조건 올림 처리(소수점 첫째 자리 올림)
+    document.write('<h4>ceil</h4>');
+    document.write(Math.ceil(4.9), '<br>');
+    document.write(Math.ceil(4.7), '<br>');
+    document.write(Math.ceil(4.4), '<br>');
+    document.write(Math.ceil(4.2), '<br>');
+    document.write(Math.ceil(-4.2), '<br>');
+    // 예:
+    // 50 / 15 = 3.3333333333333335, Math.ceil(50 / 15) = 4
+    // 총 페이지 수 = Math.ceil(총 아이템 수 / 한 페이지당 보이는 아이템 수);
+    
+    // 3) Math.floor()
+    // 숫자에 대한 무조건 내림 처리(소수점 첫째 자리 내림)
+    document.write('<h4>floor</h4>');
+    document.write(Math.floor(4.9), '<br>');
+    document.write(Math.floor(4.7), '<br>');
+    document.write(Math.floor(4.4), '<br>');
+    document.write(Math.floor(4.2), '<br>');
+    document.write(Math.floor(-4.2), '<br>');
+    
+    // 4) Math.trunc()
+    // 소수 부분은 무조건 버리고 정수 부분만 반환
+    document.write('<h4>trunc</h4>');
+    document.write(Math.trunc(4.9), '<br>');
+    document.write(Math.trunc(4.7), '<br>');
+    document.write(Math.trunc(4.4), '<br>');
+    document.write(Math.trunc(4.2), '<br>');
+    document.write(Math.trunc(-4.2), '<br>');
+
+    // 5) Math.sign()
+    // 숫자가 양수인지 음수인지 확인하는 용도로 사용
+    // 양수이면 1, 음수이면 -1, 0이면 0을 반환
+    document.write('<h4>sign</h4>');
+    document.write(Math.sign(-4), '<br>');
+    document.write(Math.sign(0), '<br>');
+    document.write(Math.sign(4), '<br>');
+
+    // 6) Math.pow()
+    // 거듭제곱(power)한 값을 반환
+    document.write('<h4>pow</h4>');
+    document.write(Math.pow(8, 2), '<br>');
+
+    // (ES7차) 지수 연산자
+    // **은 지수를 뜻함
+    document.write(8 ** 2, '<br>');
+
+    // 거듭제곱 연산을 여러 번 결합할 때 유용
+    document.write(Math.pow(Math.pow(2, 2), 2), '<br>');
+    document.write(2 ** 2 ** 2, '<br>');
+
+    // 7) Math.sqrt()
+    // 제곱근(square root) 값을 반환
+    document.write('<h4>sqrt</h4>');
+    document.write(Math.sqrt(64), '<br>');
+
+    // 8) Math.abs()
+    // 절대값(absolute)을 반환. 즉, 무조건 양수로 반환
+    document.write('<h4>abs</h4>');
+    document.write(Math.abs(-4.7), '<br>');
+
+    // 9) Math.min(), Math.max()
+    // min()은 가장 작은 값을 반환하고, max()는 가장 큰 값을 반환
+    document.write('<h4>min, max</h4>');
+    document.write(Math.min(0, 150, 30, 20, -8, -200), '<br>');
+    document.write(Math.max(0, 150, 30, 20, -8, -200), '<br>');
+
+    // 10) Math.random()
+    // 0보다 크거나 같고 1보다 작은 범위에서 숫자형 값을 반환
+    // 0.0 이상 1.0 미만의 부동소수점 난수를 반환
+    document.write('<h4>random</h4>');
+    document.write(Math.random(), '<br>'); // 랜덤 숫자 반환
+
+    // (응용) 1에서 10 사이의 랜덤한 정수 생성
+    document.write('<h4>1에서 10 사이의 랜덤한 정수</h4>');
+    const randomNum = Math.random();
+    // 0.0 <= Math.random() < 1.0
+    document.write(randomNum, '<br>');
+    // 0.0 <= Math.random() * 10 < 10.0
+    document.write(randomNum * 10, '<br>');
+    // 0 <= Math.floor(Math.random() * 10) < 10
+    document.write(Math.floor(randomNum * 10), '<br>');
+    // 1 <= Math.floor(Math.random() * 10) + 1 < 11
+    document.write(Math.floor(randomNum * 10) + 1, '<br>');
+
+    // 실제 실무에서 특정 범위의 랜덤 정수값을 생성하는 경우가 많음
+    // 공식화: Math.floor(Math.random() * (최대값 - 최소값 + 1)) + 최소값;
+    // 자주 쓰면 함수로 만들어 놓기
+    document.write('<h4>최소값과 최대값 사이의 정수를 반환하는 함수</h4>');
+    function getRandomInteger(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+    document.write(getRandomInteger(30, 50), '<br>');
+    
+    // 실습: 가위, 바위, 보 맞추기
+    document.write('<h4>가위, 바위, 보 맞추기</h4>');
+    const selectRps = prompt('가위, 바위, 보 중 선택하세요.', '가위');
+    let user;
+
+    switch (selectRps) {
+      case '가위':
+        user = 1;
+        break;
+      case '바위':
+        user = 2;
+        break;
+      case '보':
+        user = 3;
+        break;
+      default:
+        alert('잘못 작성하셨습니다.');
+        location.reload(); // 새로고침
+        break;
+    }
+
+    // 1~3 사이의 랜덤한 정수 생성
+    const com = Math.floor(Math.random() * 3) + 1;
+    document.write(`<img src="images/math_img_${com}.jpg">`);
+
+    if (com === user) {
+      document.write(`<img src="images/game_1.jpg">`);
+    } else {
+      document.write(`<img src="images/game_2.jpg">`);
+    }
+    document.write('<br>');
+
+    // Quiz: 가위, 바위, 보 게임 만들기
+    document.write('<h4>가위, 바위, 보 게임</h4>');
+    // 컴퓨터가 낸 것 이미지 출력
+    document.write('컴퓨터가 낸 것');
+    document.write(`<img src="images/math_img_${com}.jpg">`);
+    // 내가 낸 것 이미지 출력
+    document.write('VS 내가 낸 것');
+    document.write(`<img src="images/math_img_${user}.jpg">`);
+
+    // 누가 이겼는지 출력하기
+    // user와 com의 차를 이용
+    // 0이면 비김
+    // 1 또는 -2이면 내가 이김
+    // 그 외는 내가 짐
+    const whoWin = user - com;
+    if (whoWin === 0) {
+      document.write('비겼다!');
+    } else if (whoWin === 1 || whoWin === -2) {
+      document.write('내가 이겼다!');
+    } else {
+      document.write('내가 졌다!');
+    }
+    document.write('<br>');
+
+    // 4. Date 객체
+    // 날짜와 시간을 다루는 객체로 날짜와 시간에 대한 정보를 보여줌
+    document.write(`<h1> Date 객체 </h1>`);
+
+
+    // 1) Date() 생성자
+    // Date 객체 생성 4가지 방식
+    // 변수 = new Date();
+    const now = new Date();
+    document.write(now, '<br>');
+
+    // 변수 = new Date(year, month, day, hours, minutes, seconds, milliseconds);
+    // 이때 month는 0부터 시작한다
+    const d1 = new Date(2021,6, 24, 10, 33, 0, 0);
+    document.write(d1, '<br>');
+
+    // 변수 = new Date(milliseconds);
+    const d2 = new Date(0);
+    document.write(d2, '<br>'); // 1970년 1월 1일
+    const d3 = new Date(1551646460);
+    document.write(d3, '<br>'); // 1970년 1월 1일 +1551646460ms
+
+    // 변수 = new Date(data string); 문자열 넣기
+    // 날짜 문자열로 Date 객체 생성
+    const d4 = new Date('');
+    document.write(d4, '<br>'); 
+    const d5 = new Date('2022-10-15T11:30:00');
+    document.write(d5, '<br>'); 
+
+    // 2) get 함수
+    document.write(`<h1> Get 함수 </h1>`);
+    const today = new Date();
+    const nowYear = today.getFullYear();
+    const nowMonth = today.getMonth();
+    const nowDate = today.getDate();
+    const nowDay = today.getDay();
+
+    document.write(`<h4> 오늘 날짜 정보 </h4>`);
+    document.write(`날짜 정보(기본 포맷): ${today}<br>`);
+    document.write(`연도: ${nowYear}<br>`);
+    document.write(`월: ${nowMonth}<br>`);
+    document.write(`일: ${nowDate}<br>`);
+    document.write(`요일: ${nowDay}<br>`);
+    document.write(`${nowYear}/${nowMonth +1 }/${nowDate}<br>`); // 직접포맷팅
+
+    //특정 날짜 정보를 갖는 날짜 개게 생성
+    // 예: 2024년 12월 31일
+    const someday = new Date('2024-12-31T12:59:59');
+    const thisYear = someday.getFullYear();
+    const theMonth = someday.getMonth();
+    const theDate = someday.getDate();
+    const theDay = someday.getDay();
+    document.write(`<h4> 특정 날짜 정보 </h4>`);
+    document.write(`날짜 정보(기본 포맷): ${someday}<br>`);
+    document.write(`연도: ${thisYear}<br>`);
+    document.write(`월: ${theMonth+1}<br>`);
+    document.write(`일: ${theDate}<br>`);
+    document.write(`요일: ${theDay}<br>`);
+
+    // 실습: 특정 날짜까지 D-day구하기
+    // 남은 일 수(밀리초로 나옴) = 특정 날짜 객체시간 - 현재 날짜 객체 시간
+    // 1초 = 1000 ms
+    // 1분 = 1000 * 60 ms
+    // 1시간 = 1000 * 60 * 60 ms
+    // 1일 = 1000 * 60 * 60 * 24 ms
+
+
+    const classEndDate = new Date (2024,6,18);
+    // const diffTime = classEndDate.getTime() - today.getTime();
+    // getTime()이 자동 호출됨
+    const diffTime = classEndDate - today;
+
+
+    const diffeDate = diffTime / (1000 * 60 * 60 * 24);
+    document.write(`<h4> 오늘부터 종강까지 남은 일수</h4>`);
+    document.write(`D-day: ${Math.ceil(diffeDate)}일 남았습니다`);
+
+    // 3) Set함수
+    document.write(`<h3> Set 함수 </h3>`);
+    let d = new Date();
+    document.write(d,'<br>');
+    d.setFullYear(2020);
+    document.write(d,'<br>');
+
+    // 날짜를 6개월 전으로 설정
+    d = new Date();
+    d.setFullYear(d.getFullYear(),d.getMonth()-6);
+    document.write(d,'<br>');
+
+    // 날짜를 지난달의 마지막 날로 설정
+    d = new Date();
+    d.setMonth(d.getMonth(), 0);
+    // 0 이 지난달 말일을 의미
+
+    // 5. JSON 객체
+    // 데이터를 저장하거나 전송할 때 많이 사용되는 경량의 DATA 교환방식
+    // 서버는 오직 문자만 인식 => 서버에 전송할때 문자로 바꿔서 보내줘야함
+    // 특정 통신 방법도 프로그래밍 문법도 아닌 단순히 데이터를 표시하는 방법이다 (=텍스트포맷)
+
+    // JavaScript Object Notation (JASON): 자바스크립트 객체 표기법
+    // 자바스크립트 객체에서 영감을 받아 만들어진 표기법
+    // Object { key : value }
+    // JSON { "key" : "value" }
+
+    // JSON의 특징 정리
+    // =서버와 클리아언트 간의 데이터 전송 시 많이 사용
+    // -자바 스크립트의  Ohject 객체 표기법과 매우 유사한 일반텍스트 (반드시 큰 따옴표 사용)
+    // -프로그래밍 언어에 독립적: 언어에 상관 없이 사용할 수 있는 데이터 교환 형식 (C언어, Js, 자바 등 상관없이 사용)
+    // 대부분의 언어에서 JSON데이터를 처리할 수 있는 라이브러리를 제공
+
+    document.write(`<h1>JASOM 객체</h1>`);
+// 1) JSON.stringify
+// 데이터를 서버로 전송하기 위해서는 데이터 형태를 문자열 형태로 변환 해야함
+// stringify 함수를 사용하기 위하여 objectr 데이터를 문자열로 변환
+const teacher = {
+  name:'kim',
+  age: 27,
+  isAdim: true,
+  courses: ['html','css','js'],
+  isMarried: false
+  
+}
+
+const jsonString = JSON.stringify(teacher);
+console.log(jsonString);
+console.log(typeof jsonString);
+
+// 2)JASON.parse()
+// 서버로부터 응답받은 데이터는 문자열 형태임
+// parse 함수를 사용하여 Object 데이터로 변환
+
+const text ='{"name":"kim","age":27,"isAdim":true,"courses":["html","css","js"],"isMarried":false}';
+const obj = JSON.parse(text);
+console.log(obj);
+
+// (참고)
+// Object -- serialize(직렬화) --> JSON (string 타입)
+// Object <-- deserialize(역직렬화) -- JSON(string 타입)
+
+// Quiz: 객체를 JSON으로 바꾼 후 다시 객체로 바꾸기
+// user를 JSON의 형태의 문자열로 바꾼 다음 이를 다시 객체로 바꾼 후 user2 변수에 저장해 보세요
+
+const user1 = {
+  name: 'kim',
+  age: 99
+};
+
+console.log(user1);
+const user2 = JSON.stringify(user1);
+console.log(user2);
+const user3 = `{"name":"kim","age":99}`;
+console.log(user3);
+const user4 = JSON.parse(user3);
+console.log(user4);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 </script>
 </body>

@@ -1,0 +1,22 @@
+.FancyBorder {
+  padding: 10px 10px;
+  border: 10px solid;
+}
+
+.FancyBorder-pink {
+  border-color: pink;
+  border-style: dashed;
+  border-radius: 5px;
+}
+.FancyBorder-red {
+  border-color: red;
+}
+
+.Dialog-title {
+  margin: 0;
+  font-family: sans-serif;
+}
+
+.Dialog-message {
+  font-size: larger;
+}
