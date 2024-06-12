@@ -7,6 +7,8 @@ import reportWebVitals from './reportWebVitals';
 // index.html에서 css 초기화 후 -> index.js로 넘어와서 렌더링하고 -> App.js로 렌더링 넘어감
 // 부트스트랩 css가 날아가지 않게됨!
 import 'bootstrap/dist/css/bootstrap.min.css'; //boot strap css 추가
+import 'react-toastify/dist/ReactToastify.css'; // React Toastify css 추가
+
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from "react-redux";
 import { store } from './app/store';
