@@ -7,6 +7,7 @@ import Layout from "./components/Layout.jsx";
 import First from './components/First.jsx';
 import TodoList from './components/TodoList.jsx';
 import { store } from './app/store.js';
+import Animation from './components/Animation.jsx';
 
 const GlobalStyled = createGlobalStyle`
 
@@ -17,6 +18,13 @@ const GlobalStyled = createGlobalStyle`
     font-weight: normal;
     font-style: normal;
   }
+  /* 몽글몽글 강아지폰트 화이트 */
+  @font-face {
+    font-family: 'Cafe24Meongi-W-v1.0';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2405-3@1.1/Cafe24Meongi-W-v1.0.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
 
   /* *동글동글 폰트 */
   @font-face {
@@ -38,7 +46,7 @@ const GlobalStyled = createGlobalStyle`
   }
 
   body {
-    width: 100vh;
+    width: 100vw;
     height: 100vh;
     margin: 0 auto;
     overflow: hidden;
@@ -50,9 +58,9 @@ function App() {
     <Provider store={store}>
       <GlobalStyled/>
       <Routes>
-        <Route path='/' element={<Layout name={"mina"}/>}>
+        <Route path='/' element={<Animation />} />
+        <Route path='/main' element={<Layout name={"mina"}/>}>
           <Route index element={<TodoList />}/>
-
         </Route>
 
       </Routes>

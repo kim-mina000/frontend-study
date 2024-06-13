@@ -3,6 +3,7 @@ import {Outlet} from 'react-router-dom';
 import styled from 'styled-components';
 import First from './First';
 import InsertTodo from './InsertTodo';
+import { useSelector } from 'react-redux';
 
 const Wrap = styled.div`
   width: 100vh;
@@ -74,7 +75,9 @@ const OutletWrap = styled.div`
 
 `;
 
-const Layout = ({name}) => {
+
+const Layout = ({mina}) => {
+  const name = useSelector(state => state.todoSlice.name);
   return (
     <Wrap>
       <Header>
