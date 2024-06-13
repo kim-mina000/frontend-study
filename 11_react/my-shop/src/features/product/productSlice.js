@@ -76,7 +76,7 @@ export default productSlice.reducer;
 // 액션 생성 함수
 export const { 
   getAllProducts, 
-  getSelectedProduct, 
+  getDetailProduct, 
   clearSelectedProduct,
   addMoreProducts
 } = productSlice.actions;
