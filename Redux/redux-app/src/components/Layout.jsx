@@ -6,7 +6,7 @@ import InsertTodo from './InsertTodo';
 import { useSelector } from 'react-redux';
 
 const Wrap = styled.div`
-  width: 100vh;
+  width: 100vw;
   height: 100vh;
   top: 0;
   left: 0;
@@ -59,7 +59,7 @@ const StyledOutlet = styled.div`
   position: absolute;
   top: 31%;
 
-  width: 80%;
+  width: 50%;
   height: 50%;
 
   border: 15px solid #111;

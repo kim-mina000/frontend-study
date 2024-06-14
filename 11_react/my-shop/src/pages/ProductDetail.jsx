@@ -1,12 +1,14 @@
 import axios from "axios";
-import { Alert, Button, Col, Container, Form, Row } from "react-bootstrap";
+import { Alert, Button, Col, Container, Form, Nav, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import styled, {keyframes} from "styled-components";
 
 import { clearSelectedProduct, getDetailProduct, selectGetDetailProduct } from "../features/product/productSlice";
 import { toast } from "react-toastify";
+import TabContent from "../components/TabContent";
+import { addCartList } from "../features/cart/cartSlice";
 
 
 // styled component를 이용한 애니메이션 속성 적용
@@ -29,6 +31,8 @@ function ProductDetail() {
   const dispatch = useDispatch();
   const [timeOut, setTimeOut] = useState(true);
   const [orderCount, setOrderCount] = useState(1);
+  const [currentTabIndex, setCurrentTabIndex] = useState(0);
+  const [tabKey, setTabKey] = useState('detail');
 
   const handleChangeOrderCount = (e) =>{
     // 숫자 외 입력시 유효성 검사 후 경고 토스트 띄우기
@@ -84,8 +88,7 @@ function ProductDetail() {
   });
   
   const productDetail = useSelector(selectGetDetailProduct);
-
-  
+  const nevigate = useNavigate();
 
   return (
     <Container className="pt-3">
@@ -109,7 +112,7 @@ function ProductDetail() {
             <Form.Control type="text" onChange={handleChangeOrderCount} value={orderCount} />
           </Col>
 
-          <Button variant="primary">주문하기</Button>
+          <Button variant="primary" onClick={()=>{dispatch(addCartList({productDetail,orderCount})); nevigate('/cart');}}>주문하기</Button>
         </Col>
         {/* 
         기존의 데이터 초기값이 null이기 때문에 오류가 났던것!
@@ -117,6 +120,57 @@ function ProductDetail() {
         ? <옵셔널 체이닝을 통해 해결 가능 하다
         */}
       </Row>
+
+      {/* 탭 버튼 UI */}
+      {/* defaultActiveKey: 기본으로 active 할 탭, active클래스가 들어가있음 */}
+        <Nav variant="tabs" defaultActiveKey="/link-0"
+          className="my-3"
+        >
+        <Nav.Item>
+          <Nav.Link eventKey="link-0" onClick={()=>{setCurrentTabIndex(0); setTabKey('detail')}}>상세정보</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link eventKey="link-1" onClick={()=>{setCurrentTabIndex(1); setTabKey('review')}}>리뷰</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link eventKey="link-2" onClick={()=>{setCurrentTabIndex(2); setTabKey('qa')}}>Q&amp;A</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link eventKey="link-3" onClick={()=>{setCurrentTabIndex(3); setTabKey('exchange')}}>반품/교환정보</Nav.Link>
+        </Nav.Item>
+      </Nav>
+
+      {/* 탭의 내용을 다 만들어 놓고 조건부 렌더링 하면 됨 */}
+      {/* 방법1: 삼항 연산자 사용 (가독성 나쁨) */}
+      {currentTabIndex === 0 
+      ?<div>탭 내용 1</div> 
+      : currentTabIndex === 1
+        ?<div>탭 내용 2</div>
+        : currentTabIndex === 2 
+          ?<div>탭 내용 3</div>
+          : currentTabIndex === 3
+            ?<div>탭 내용 4</div>
+            :null
+      }
+      {/* 방법2: 컴포넌트로 추출 (가독성 개선) */}
+      <TabContent currentTabIndex={currentTabIndex} />
+
+      {/* 방법3(편법): 배열이나 객체 형태로 만들어서 조건부 렌더링 */}
+      {/* 배열 형태 */}
+      {[
+        <div>탭 내용 1</div>,
+        <div>탭 내용 2</div>,
+        <div>탭 내용 3</div>,
+        <div>탭 내용 4</div>
+      ][currentTabIndex]}
+
+      {/* Quiz:객체 형태 */}
+      {{
+        'detail':<div>탭 내용 1</div>,
+        'review':<div>탭 내용 2</div>,
+        'qa':<div>탭 내용 3</div>,
+        'exchange':<div>탭 내용 4</div>,
+      }[tabKey]}
     </Container>
   );
 };

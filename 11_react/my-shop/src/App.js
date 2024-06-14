@@ -54,6 +54,9 @@ function App() {
             예: /detail/1로 접속하면 productId에 1이 담기도록 설정
           */}
           <Route path='/detail/:id' element={<ProductDetail />}/>
+          <Route path='/cart' element={<Cart />}/>
+          {/* 매칭되는 경로가 없을때 띄울 페이지 path="*" */}
+          <Route path='*' element={<div>페이지가 존재하지 않습니다</div>}/> 
 
         </Route>
     	</Routes>

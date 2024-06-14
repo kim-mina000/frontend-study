@@ -14,6 +14,7 @@ const Wrap = styled.div`
   align-items: center;
   width: 100%;
   padding: 5px 10px;
+  overflow-x: hidden;
 
   &>p{
     flex: 1;

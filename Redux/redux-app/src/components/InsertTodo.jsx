@@ -24,6 +24,7 @@ const StyledButton = styled.button`
 `;
 
 const StyledInput = styled.input`
+  min-width: 0%;
   flex:1;
   font-family: 'Dongle-Regular';
   font-size: 30px;

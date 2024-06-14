@@ -36,7 +36,7 @@ const dogAnimation = keyframes`
 const Wrap = styled.div`
   width: 100vw;
   height: 100vh;
-  background-size: contain;
+  background-size: cover;
   transition: 0.5s;
   background-color: black;
   position: relative;
@@ -101,15 +101,16 @@ const StyledA = styled.div`
 
   & a{
     font-family: 'Cafe24Meongi-B-v1.0';
-    font-size: 70px;
+    font-size: 50px;
     position: absolute;
     right: 0;
   }
 
   & svg {
+    font-size:30px;
     position: relative;
-    top: 18px;
-    right: 10px;
+    top: 3px;
+    right: 5px;
   }
 
   &:hover {

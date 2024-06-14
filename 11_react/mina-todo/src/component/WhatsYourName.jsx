@@ -110,7 +110,7 @@ function WhatsYourName({name, setName}) {
         </CloudAnimation>
       </IoCloudyDiv>
       <p style={{ fontFamily: 'notosanskr'}}>Please Enter your name</p>
-      <InputName ref={inputFocus} onChange={(e)=> setName(e)} value={name} placeholder="이름을 넣어주세요!"
+      <InputName ref={inputFocus} onChange={(e)=> setName(e)} value={name}  placeholder="이름을 넣어주세요!"
         spellCheck={ false }
         contentEditable = {editable}
         onInput={handleInputEvent}
