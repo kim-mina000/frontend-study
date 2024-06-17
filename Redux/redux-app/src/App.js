@@ -4,7 +4,6 @@ import {Routes, Route} from 'react-router-dom';
 import {Provider} from "react-redux";
 
 import Layout from "./components/Layout.jsx";
-import First from './components/First.jsx';
 import TodoList from './components/TodoList.jsx';
 import { store } from './app/store.js';
 import Animation from './components/Animation.jsx';
@@ -59,7 +58,7 @@ function App() {
       <GlobalStyled/>
       <Routes>
         <Route path='/' element={<Animation />} />
-        <Route path='/main' element={<Layout name={"mina"}/>}>
+        <Route path='/main' element={<Layout />}>
           <Route index element={<TodoList />}/>
         </Route>
 

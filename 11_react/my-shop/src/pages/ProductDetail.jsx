@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Alert, Button, Col, Container, Form, Nav, Row } from "react-bootstrap";
+import { Alert, Button, Col, Container, Form, Modal, Nav, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -90,6 +90,13 @@ function ProductDetail() {
   const productDetail = useSelector(selectGetDetailProduct);
   const nevigate = useNavigate();
 
+
+  // 모달
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   return (
     <Container className="pt-3">
       {/* alert 을 띄우고 3초 뒤에 사라지게 만들기 */}
@@ -112,7 +119,8 @@ function ProductDetail() {
             <Form.Control type="text" onChange={handleChangeOrderCount} value={orderCount} />
           </Col>
 
-          <Button variant="primary" onClick={()=>{dispatch(addCartList({productDetail,orderCount})); nevigate('/cart');}}>주문하기</Button>
+          <Button variant="primary">주문하기</Button>
+          <Button variant="warning" onClick={()=>{dispatch(addCartList({productDetail,orderCount})); handleShow(); }}>장바구니</Button>
         </Col>
         {/* 
         기존의 데이터 초기값이 null이기 때문에 오류가 났던것!
@@ -171,6 +179,25 @@ function ProductDetail() {
         'qa':<div>탭 내용 3</div>,
         'exchange':<div>탭 내용 4</div>,
       }[tabKey]}
+
+      {/* 장바구니 모달 -> 추후 범용적인 공통 모달로 만들고 구체화하여 사용하는 것이 좋음*/}
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>🛒 미나네 샵 알림</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+        장바구니에 상품을 담았습니다. <br/>
+        장바구니로 이동하시겠습니까?
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            취소
+          </Button>
+          <Button variant="primary" onClick={()=>{handleClose(); nevigate('/cart');}}>
+            확인
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </Container>
   );
 };

@@ -12,7 +12,7 @@ const initialState = {
       count: 2
     },
     {
-      id:'2',
+      id:'3',
       title:'Aerus Z',
       price:199000,
       count: 1
@@ -27,8 +27,11 @@ const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers:{
-    addCartList :(state, action)=>{
-      const newItem = {...action.payload.productDetail, count:action.payload.orderCount, price:action.payload.orderCount*action.payload.productDetail.price};
+    // 상품 객체로 넘겨주면 cartList에 아이템을 추가하는 리듀서 만들기
+    // 이미 들어있는 상품이면 수량만 증가
+    // 장바구니에 없는 상품이면 추가
+    addCartList :(state, { payload : {productDetail,orderCount} })=>{
+      const newItem = {...productDetail, count:orderCount, price:orderCount*productDetail.price};
       const selectedItem = state.cartList.find((item)=>item.id === newItem.id);
       
       if (selectedItem === undefined) {
@@ -54,13 +57,17 @@ const cartSlice = createSlice({
         } else {
           selectedItem.count--;
         }
-    }
-
-
+    },
+    // Quiz 장바구니에서 삭제하는 리듀서 마들기
+    removeItemFromCart: (state, {payload:id}) =>{
+      state.cartList = state.cartList.filter(item => item.id !== id);
+      // splice 도 괜찮은 선택! 원본 배열을 변경하는 함수! filter는 원본을 변경하지않음!
+      // splice(index, index로부터 지울 배열의 수)
   }
+}
 
-})
+});
 
 export default cartSlice.reducer;
 export const selectCartList = state => state.cart.cartList;
-export const {addCartList,increaseCount,decreaseCount} = cartSlice.actions;
+export const {addCartList,increaseCount,decreaseCount,removeItemFromCart} = cartSlice.actions;

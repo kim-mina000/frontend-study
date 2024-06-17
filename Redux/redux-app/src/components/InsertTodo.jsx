@@ -1,8 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
-import { addTodo } from '../features/slice/todoSlice';
 import { v4 } from 'uuid';
+
+import { addTodo } from '../features/slice/todoSlice';
+
 
 const Wrap = styled.div`
   border-bottom: 15px solid #111;
@@ -51,7 +53,6 @@ const InsertTodo = () => {
     ref.current.focus();
   }, []);
 
-
   return (
     <Wrap>
       <StyledInput 
@@ -68,7 +69,7 @@ const InsertTodo = () => {
         }}
       />
       <StyledButton
-        onClick={()=>handleButtonClick()}
+        onClick={handleButtonClick}
         disabled = {!todoContents}
       >Enter</StyledButton>
     </Wrap>

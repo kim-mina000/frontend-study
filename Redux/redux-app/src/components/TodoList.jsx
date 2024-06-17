@@ -10,9 +10,23 @@ const TodoList = () => {
     localStorage.setItem("todoList",JSON.stringify(todoList));
   }, [todoList]);
 
+  // done=true인 todo는 아래로 내리기
+  const orderList =[];
+
+  todoList.forEach((todo)=>{
+    if (!todo.done) {
+      orderList.push(todo);
+    }
+  })
+  todoList.forEach((todo)=>{
+    if (todo.done) {
+      orderList.push(todo);
+    }
+  })
+
   return (
     <>
-      {todoList.map((todo)=>{ 
+      {orderList.map((todo)=>{ 
         return <Todo key={todo.id} id={todo.id} done={todo.done} todoContents={todo.todoContents} />
       })}
     </>
