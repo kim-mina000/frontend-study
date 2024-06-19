@@ -39,6 +39,18 @@ function Cart() {
           </tr>
           )
         })}
+        {/* 총 합계 row 만들기 */}
+        <tr>
+          <th colSpan={3}>합계</th>
+          <th>
+            {formatter.format(
+              cartList.reduce((total,current)=>{
+              total += (current.price * current.count)
+              return total;
+            },0))}원
+            {/* 초기값 0을 넣어주지 않으면 초기값에 맨 첫번째 값이 들어감! 주의!! */}
+          </th>
+        </tr>
       </tbody>
     </Table>
     </>

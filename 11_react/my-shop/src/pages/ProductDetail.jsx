@@ -33,6 +33,7 @@ function ProductDetail() {
   const [orderCount, setOrderCount] = useState(1);
   const [currentTabIndex, setCurrentTabIndex] = useState(0);
   const [tabKey, setTabKey] = useState('detail');
+  const [recentList, setRecentList] = useState([]);
 
   const handleChangeOrderCount = (e) =>{
     // 숫자 외 입력시 유효성 검사 후 경고 토스트 띄우기
@@ -96,6 +97,23 @@ function ProductDetail() {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  // useEffect
+  // 상품 상세페이지에 들어갔을 때 해당 상품이 존재할때만 id값을 localStorage에 추가
+  useEffect(() => {
+
+    if(!productDetail) return;
+
+    let recentProducts = JSON.parse(localStorage.getItem("recentProducts")) || [] ; // 처음엔 null이 들어올 예정이니까 기본값으로 빈배열을 넣어줌
+
+    // id 값을 넣기 전에 기존 배열에 존재하는지 검사하거나
+    // 아니면 일단 배열에 넣고 Set 자료형을 이용하여 중복 제거
+    recentProducts.unshift(productDetail.id);
+    recentProducts = new Set(recentProducts); // 배열을 Set 객체로 만듦 (중복 요소가 제거됨)
+    recentProducts = [...recentProducts]; // 배열 -> Set 객체 -> 배열
+    localStorage.setItem("recentProducts",JSON.stringify(recentProducts));
+
+  }, [productDetail]);
 
   return (
     <Container className="pt-3">

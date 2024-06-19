@@ -63,7 +63,7 @@ const cartSlice = createSlice({
       state.cartList = state.cartList.filter(item => item.id !== id);
       // splice 도 괜찮은 선택! 원본 배열을 변경하는 함수! filter는 원본을 변경하지않음!
       // splice(index, index로부터 지울 배열의 수)
-  }
+  },
 }
 
 });
