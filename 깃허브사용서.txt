@@ -1,0 +1,22 @@
+▶git branch = 브랜치 조회
+▶git branch (브랜치이름) = 브랜치 생성
+▶git checkout (브랜치이름) = 브랜치 이동
+
+▶브랜치 pull requests <- 깃허브 홈페이지에서 머지
+merge하고 그때그때 브랜치 delete해줄것
+
+로컬 저장소에서도
+▶git branch -D (브랜치 이름)
+해서 로컬 저장소 브랜치도 지워줄것
+
+▶그리고 다시 git pull 해서 변경사항 main 으로 가져오기 ★★★
+
+▷git brach -h 도움말
+
+▷github에서 settings - Default branch를 develope 브랜치로 설정해놓기!
+
+▶github에서 브랜치 삭제 했는데 vs코드에서 남아있는 경우
+   git fetch --all -p 해서 최신으로 업데이트 해주기
+
+▷컨프릭(철자뭐임 conflick..?)이 생기는 경우 간단한 코드는 깃허브 웹에서,
+   수정이 많이 필요한 경우는 command line을 따라 vs 코드에서 수정 후 다시 푸시해주기
