@@ -25,6 +25,14 @@ const GlobalStyle = createGlobalStyle`
   .cursor-pointer {
     cursor: pointer;
   }
+
+  /* 넘치는 텍스트에 말 줄임표(...) 만들기 */
+  .text-ellipsis {
+    white-space: nowrap; // 줄바꿈 안주기
+    overflow: hidden; // 튀어나온거 숨기기
+    text-overflow: ellipsis; // 생략하기 -> 세개를 세트로!
+
+  }
 `;
 
 function App() {

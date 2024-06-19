@@ -11,6 +11,7 @@ import ProductListItem from "../components/ProductListItem";
 // 1) src 폴더 안 이미지(상대경로로 import해서 사용)
 import siri from "../images/siri.jpg";
 import { getMoreProducts } from "../api/productAPI";
+import RecentProducts from "../components/RecentProducts";
 // 2) public 폴더 안 이미지 (root 경로로 바로 접근)
 // 빌드 시 src 폴더 안에 있는 코드와 파일은 압축이 되지만 public 폴더에 있는 것들은 그대로 보존
 // 이미지 같은 수정이 필요 없는 static 파일의 경우 public에 보관하기도 함
@@ -54,6 +55,7 @@ function Main() {
     const handleGetMoreProductsAsync = () => {
       dispatch(getMoreProductsAsync());
     };
+    
   
 
     return (
@@ -105,6 +107,8 @@ function Main() {
         </Button>
       </section>
       
+      {/* 최근 본 상품 컴포넌트 */}
+      {productList.length > 0 && <RecentProducts productList={productList} />}
     </>
   );
 };
